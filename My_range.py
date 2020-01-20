@@ -1,4 +1,4 @@
-def my_range(start, stop, step = 1):
+def my_range(start, stop, step = 1):    # Функция с параметром по умочанию
     res = []
     if step > 0:
         x = start
