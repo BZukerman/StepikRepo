@@ -60,3 +60,19 @@ print(a)                # [31, 32, 33]
 other = {3: a}
 d.update(other)         # {1: [3, 4], 3: [31, 32, 33], 2: [23, 24]}
 print(d)
+a = d1.items
+print(a)                # <built-in method items of dict object at 0x00D77A50>
+print(d1.items)         # <built-in method items of dict object at 0x00D77A50>
+a = d1.values()
+print(a)
+key = 3
+b = (key in d)
+print(b)                # True
+key = 5
+print(key in d)         # False
+d.setdefault(2, []).append(77)
+print(d)
+key = 3
+value = 88
+d.setdefault(key,[]).append(value)
+print(d)
