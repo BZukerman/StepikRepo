@@ -1,12 +1,12 @@
 def update_dictionary(d, key, value):
-    if (key in d) is True:
+    if (key in d) is True:                      # Если ключ key есть в словаре
         d.setdefault(key, []).append(value)
 #        print("key in d")
-    if (key in d) is False:
-        if (key * 2 in d) is True:
+    if (key in d) is False:                     # Ключ key в словаре отсутствует
+        if (key * 2 in d) is True:              # Ключ key * 2 есть в словаре
             d.setdefault(key * 2, []).append(value)
 #            print("key is not in d and key * 2 is in d")
-        if (key * 2 in d) is False:
+        if (key * 2 in d) is False:             # Ключ key * 2 в словаре отсутствует
             d.setdefault(key * 2, []).append(value)
 #            print("key and key * 2 are not in d")
     return (d)
