@@ -1,0 +1,3 @@
+abc a bCd bC AbC BC BCD bcd ABC
+bcd d bCd bc BcD CD CDE cde CDE
+cde e cDe cd CdE DE EFG efg SFG
