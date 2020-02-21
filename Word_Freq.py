@@ -1,9 +1,9 @@
 Inf = open('Freq.txt', 'r')                 # Открытие вводного файла
 # Построчное чтение из файла
 # Source = "abc a bCd bC AbC BC BCD bcd ABC"
-Source = ""
+Source = ""                                 # Строка исходных данных
 for line in Inf:                            # Цикл по строкам файла ввода
-    line = line.strip()                     # Отбрасить спецсимволы в начале и конце строки
+    line = line.strip()                     # Отбросить спецсимволы в начале и конце строки
 #    print("line:", line)
     Source = Source + line + " "            # "Сшивание" в итоговую строку
 Inf.close()                                 # Закрытие вводного файла
