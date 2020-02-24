@@ -1,5 +1,5 @@
-Inf = open('Progress_In.txt', 'r')              # Открытие вводного файла
-Outf = open('Progress_Out.txt', 'w')            # Открытие выводного файла
+Inf = open('../../Progress_In.txt', 'r')              # Открытие вводного файла
+Outf = open('../../Progress_Out.txt', 'w')            # Открытие выводного файла
 Surname = ""                                    # Фамилия абитуриента
 Math = 0                                        # Оценка по математике
 Phys = 0                                        # Оценка по физике

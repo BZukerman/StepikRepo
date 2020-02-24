@@ -1,4 +1,4 @@
-Inf = open('Freq.txt', 'r')                 # Открытие вводного файла
+Inf = open('../../Freq.txt', 'r')                 # Открытие вводного файла
 # Построчное чтение из файла
 # Source = "abc a bCd bC AbC BC BCD bcd ABC"
 Source = ""                                 # Строка исходных данных

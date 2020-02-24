@@ -18,7 +18,7 @@ while Finish is False:
     Keys = Keys + [Mem]     # Занесение этого члена в строку ключей
     Rep = Row_s.count(Mem)  # Число повторений подстроки в списке - данное
     Values.append(Rep)      # Занесение данного в массив данных
-    Dict.setdefault(Mem, []).append(Rep)    # Занессение пары ключ - данное в словарь
+    Dict.setdefault(Mem, []).append(Rep)    # Занесение пары ключ - данное в словарь
     for i in range(Rep):    # Удаление повторяющихся подстрок из строки
         Row_s.remove(Mem)
     Sum = Sum + Rep         # Подсчет общей суммы повторяющихся подстрок
