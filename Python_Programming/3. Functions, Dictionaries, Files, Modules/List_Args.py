@@ -3,6 +3,10 @@
 # Для доступа к аргументам командной строки программы подключите модуль sys и используйте
 # переменную argv из этого модуля.
 #
-import sys
-# print(len(sys.argv))
-print(sys.argv)
+# import sys
+from sys import argv
+# argv
+# print(len(argv))
+# print(argv)
+for i in range(1, 3):
+    print(argv)
