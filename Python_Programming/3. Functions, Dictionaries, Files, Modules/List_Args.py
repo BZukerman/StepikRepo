@@ -3,10 +3,10 @@
 # Для доступа к аргументам командной строки программы подключите модуль sys и используйте
 # переменную argv из этого модуля.
 #
-# import sys
-from sys import argv
-# argv
-# print(len(argv))
-# print(argv)
-for i in range(1, 3):
-    print(argv)
+from sys import argv        # Импорт функции argv из модуля sys
+Length = len(argv)          # Определение числа аргументов
+if Length > 1:              # Если есть аргументы кроме вызова Python
+    for i in range(1, Length):      # Цикл, начиная с индекса 1 (кроме вызова Python)
+        print(str(argv[i]))
+else:
+    print("Arguments not provided!")    # Вызов Python без параметров
