@@ -10,8 +10,10 @@ print("URL:", URL)                          # Печать URL для чтени
 # Length = len(URL)                           # Длина строки URL
 # print("Length:", Length)
 Req = requests.get(URL)                     # Чтение файла из URL
-# print("Req.text:", Req.text)                # Печать файла из URL
-Req_1 = Req.text.splitlines()               # Разбиваем текст с помощью метода splitlines()
+# print("Req.text:", Req.text)
+# Печать файла из URL
+# print(len(Req.text))                        # 16207
+Req_1 = Req.text.splitlines()               # Разбиваем текст на подстроки с помощью метода splitlines()
 # print("Req_1:", Req_1)                      # Печать текста
 Length = len(Req_1)                         # Количество строк текста
 print("Length:", Length)                    # Печать количества строк
