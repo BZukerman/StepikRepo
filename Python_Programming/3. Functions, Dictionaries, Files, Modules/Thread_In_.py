@@ -1,3 +1,5 @@
+# Здесь франментты для отладки
+#
 import requests
 URL = ""
 # FileName = "dataset_3378_3.txt"
@@ -19,18 +21,21 @@ Length = len(URL_1)
 # print("Length:", Length)
 FileName = URL_1[Length - 1]
 print("FileName:", FileName)
-URL = Path + FileName
+# URL = Path + FileName
+URL = "https://stepic.org/media/attachments/course67/3.6.3/843785.txt"
 print("URL:", URL)
 Req = requests.get(URL)
 # print("Req:", Req)
 # Req_1 = Req.text.splitlines()
 Req_1 = Req.text
-print("Req_1:", Req_1)
+print("Req_1:")
+print(Req_1)
 Length = len(Req_1)
 # print("Length:", Length)
 # SS = str(Req_1.find("We", 0, 1))
 # SS = Req_1.split()
-SS = Req_1[0] + Req_1[1]
+# SS = Req_1[0] + Req_1[1]
+SS = Req_1[0: 2]
 # print("SS:", SS)
 if SS == "We":
     Exit = True
@@ -38,7 +43,7 @@ else:
     Exit = False
 # print("Exit:", Exit)
 while Exit is False:
-    FileName = ?
+    FileName = "843785.txt"
     URL = Path + FileName
     Req = requests.get(URL)
     Req_1 = Req.text
@@ -48,5 +53,5 @@ while Exit is False:
         break
     else:
         Exit = False
-print(Req_1)
+# print(Req_1)
 
