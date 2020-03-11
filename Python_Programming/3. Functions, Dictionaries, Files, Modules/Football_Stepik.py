@@ -9,7 +9,8 @@ Unlucks = 0
 # Report = [Matches, Wins, Draws, Unlucks, Points]
 # Totals = {Club: Report}
 # Results = {Team_1: Goals_1, Team_2: Goals_2}
-Inf = open('E:\Tsuker\StepikRepo\FB_6.txt', 'r')
+
+Inf = open('E:\Tsuker\StepikRepo\FB_4.txt', 'r')
 for line in Inf:                            # Цикл по строкам файла ввода
     line = line.strip()                     # Отбрасываем спецсимволы в начале и конце строки
 #    Row_s = input()
@@ -23,9 +24,9 @@ for line in Inf:                            # Цикл по строкам фа�
     Res_i = [Team_1i, Goals_1i, Team_2i, Goals_2i]
     Results.append(Res_i)
 Inf.close()
-print("Results:")
-for i in range(Games):
-   print(Results[i])
+# print("Results:")
+# for i in range(Games):
+#    print(Results[i])
 #
 for i in range(Games):              # Цикл по "левым" командам
     Report_i = Results[i]
@@ -107,4 +108,4 @@ for i in range(Games):              # Цикл по "правым" команд�
 print("Totals:")
 for Club, Report in Totals.items():
         print(Club, ":", Report, sep = '')      # sep = '' убирает разделители - пробелы
-# Убрать квадратные скобки при выводе!
+# Добавить цикл по "правым" командам!
