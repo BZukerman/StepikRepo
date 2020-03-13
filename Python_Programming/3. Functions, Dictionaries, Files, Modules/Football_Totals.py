@@ -1,7 +1,7 @@
-Games = int(input())
-Results = []
-Totals = {}
-Club = ""
+Games = int(input())                # Колтчество игр
+Results = []                        # Пустой словарь для ввода результатов
+Totals = {}                         # Пустой справочник дл вывода результатов
+Club = ""                           # Клуб
 # Matches = 0
 # Wins = 0
 # Draws = 0
@@ -9,60 +9,60 @@ Club = ""
 # Report = [Matches, Wins, Draws, Unlucks, Points]
 # Totals = {Club: Report}
 # Results = {Team_1: Goals_1, Team_2: Goals_2}
-Inf = open('E:\Tsuker\StepikRepo\FB_6.txt', 'r')
+Inf = open('E:\Tsuker\StepikRepo\FB_6.txt', 'r')    # Открытие файла ввода результатов
 for line in Inf:                            # Цикл по строкам файла ввода
     line = line.strip()                     # Отбрасываем спецсимволы в начале и конце строки
 #    Row_s = input()
     Row_l = [i for i in line.split(";")]
 #    print(Row_l)
-    Team_1i = Row_l[0]
-    Goals_1i = int(Row_l[1])
-    Team_2i = Row_l[2]
-    Goals_2i = int(Row_l[3])
+    Team_1i = Row_l[0]                      # Распакока строки ввода - "левая" команда
+    Goals_1i = int(Row_l[1])                # Голы "левой" команды
+    Team_2i = Row_l[2]                      # "Правая" команда
+    Goals_2i = int(Row_l[3])                #  Голы "правой" команды
 #    print(Team_1i, Goals_1i, Team_2i, Goals_2i)
-    Res_i = [Team_1i, Goals_1i, Team_2i, Goals_2i]
-    Results.append(Res_i)
-Inf.close()
+    Res_i = [Team_1i, Goals_1i, Team_2i, Goals_2i]      # Список строки исходных данных
+    Results.append(Res_i)                   # Пополнение списка новой строкой
+Inf.close()                         # Закрытие вводного файла
 print("Results:")
-for i in range(Games):
+for i in range(Games):              # Печать всех вводных данных
    print(Results[i])
 #
 for i in range(Games):              # Цикл по "левым" командам
-    Report_i = Results[i]
+    Report_i = Results[i]           # Строка данных
 #    print(Report_i)
-    Club_i = Report_i[0]
-    Matches_i = 0
-    Goals_1i = Report_i[1]
-    Goals_2i = Report_i[3]
-    if Goals_1i > Goals_2i:
-        Wins_1i = 1
-        Draws_1i = 0
-        Unlucks_1i = 0
-    if Goals_1i == Goals_2i:
+    Club_i = Report_i[0]            # Распаковка строки - клуб
+    Matches_i = 0                   # Число игр
+    Goals_1i = Report_i[1]          # Голы "левой" команды
+    Goals_2i = Report_i[3]          # Голы "правой" команды
+    if Goals_1i > Goals_2i:         # Победа "левой" команды
+        Wins_1i = 1                 # Число побед
+        Draws_1i = 0                # Число ничьих
+        Unlucks_1i = 0              # Число проигрышей
+    if Goals_1i == Goals_2i:        # Ничьи
         Wins_1i = 0
         Draws_1i = 1
         Unlucks_1i = 0
-    if Goals_1i < Goals_2i:
+    if Goals_1i < Goals_2i:         # Пригрыши
         Wins_1i = 0
         Draws_1i = 0
         Unlucks_1i = 1
 #    print(Wins_1i, Draws_1i, Unlucks_1i)
-    if (Club_i) in Totals:
+    if (Club_i) in Totals:          # Повторное вхождение клуба в справочник
 #        print(Wins_1i, Draws_1i, Unlucks_1i)
-        Values = Totals.get(Club_i)
+        Values = Totals.get(Club_i)     # Получение имеющихся данных клуба
 #        print("Values:", Values)
-        Wins_1i = Wins_1i + Values[1]
-        Draws_1i = Draws_1i + Values[2]
-        Unlucks_1i = Unlucks_1i + Values[3]
-    Points_i = Wins_1i * 3 + Draws_1i * 1
-    Matches_i = Wins_1i + Draws_1i + Unlucks_1i
-    Rep_i = [Matches_i]
+        Wins_1i = Wins_1i + Values[1]       # Суммирование побед
+        Draws_1i = Draws_1i + Values[2]     #              ничьих
+        Unlucks_1i = Unlucks_1i + Values[3] #              проигрышей
+    Points_i = Wins_1i * 3 + Draws_1i               # Подсчет баллов
+    Matches_i = Wins_1i + Draws_1i + Unlucks_1i     # Подсчет игр
+    Rep_i = [Matches_i]                     # Заполнение строки данных
     Rep_i.append(Wins_1i)
     Rep_i.append(Draws_1i)
     Rep_i.append(Unlucks_1i)
     Rep_i.append(Points_i)
     Pair_i = {Club_i: Rep_i}
-    Totals.update(Pair_i)
+    Totals.update(Pair_i)                   # Обновление справочника
 # print("Totals Left:")
 # for Club, Report in Totals.items():
 #        print(Club, ":", Report, sep = '')      # sep = '' убирает разделители - пробелы
@@ -102,9 +102,9 @@ for i in range(Games):              # Цикл по "правым" команд�
     Rep_i.append(Unlucks_2i)
     Rep_i.append(Points_i)
     Pair_i = {Club_i: Rep_i}
-    Totals.update(Pair_i)
+    Totals.update(Pair_i)               # Обновление справочника
 print("Totals:")
-for Club, Report in Totals.items():
+for Club, Report in Totals.items():     # Печать результатов обработки данных
 #    print(Club, ":", Report, sep = '')      # sep = '' убирает разделители - пробелы
 #    print(Club, ":", *Report, sep = '')     # "*" пeред Report убирает символы "[" и "]"
     print((Club+":"), *Report, end = "\n")
