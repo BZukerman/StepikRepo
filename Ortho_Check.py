@@ -21,14 +21,17 @@ print(Rows)
 #
 for i in range(N_Rows):
     Row_i = Rows[i]
-#    Length_i = len(Row_i)
-    Row_ii = Row_i.splitlines()
+    Row_ii = Row_i.split()
     Length_i = len(Row_ii)
+    print("Length_i:", Length_i)
     print("Row_ii:", Row_ii)
     for j in range(Length_i):
-        SS_ij = Row_ii[j].split()
+        SS_ij = str(Row_ii[j].splitlines())
         print("SS_ij:", SS_ij)
         for k in range(N_Samples):
             Sample_k = Samples[k]
-            if SS_ij != Sample_k:
+            print("Sample_k:", Sample_k)
+            if SS_ij == Sample_k:
+                continue
+            else:
                 print(SS_ij)
