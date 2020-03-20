@@ -5,39 +5,37 @@
 # запад 20
 # юг 30
 # восток 40
-N_Coord = int(input())
-Coord_i = []
-Dif_X = []
-Dif_Y = []
-Points = N_Coord//2
-for i in range(N_Coord):
-    Coord_i = input().split()
-    if i%2 == 0:
-        Dir = Coord_i[0]
-        DY = int(Coord_i[1])                # Север (+) - Юг (-) (2nd coordinate)
-        if Dir == ("запад" or "восток"):
-            continue
-        if Dir == "север":
-            DY = +DY
-        if Dir == "юг":
-            DY = -DY
-        Dif_Y.append(DY)
-        continue
-#        if Dir == ("север" or "юг"):
-#            continue
-    if i%2 == 1:
-        Dir = Coord_i[0]
-        DX = int(Coord_i[1])            # Восток (+) - Запад (-) (1st coordinate)
-        if Dir == "восток":
-            DX = +DX
-        if Dir == "запад":
-            DX = -DX
-        Dif_X.append(DX)
-print(Dif_X)
-print(Dif_Y)
-X = 0
+#
+N_Steps = int(input())                  # Ввод числа шагов
+DX = 0                                  # Приращение по оси Х
+DY = 0                                  # Приращение по оси Y
+Coord_i = []                            # Список вводимой строки
+Dif_X = []                              # Пустой список приращений по Х
+Dif_Y = []                              # Пустой список приращений по Y
+for i in range(N_Steps):                # Цикл по шагам
+    Coord_i = input().split()           # Чтение с разбиением по пробелу
+    Dir = Coord_i[0]                    # Направление шага
+    Diff_C = int(Coord_i[1])            # Приращение координаты (модуль)
+    if Dir == "север":                  # На Север - (+)
+        DY = +Diff_C
+        DX = 0
+    if Dir == "юг":                     # На Юг - (-)
+        DY = -Diff_C
+        DX = 0
+    if Dir == "восток":                 # На Восток - (+)
+        DX = +Diff_C
+        DY = 0
+    if Dir == "запад":                  # На Запад - (-)
+        DX = -Diff_C
+        DY = 0
+#    print(DX, DY)
+    Dif_Y.append(DY)                    # Пополнение списка приращений по оси Y
+    Dif_X.append(DX)                    # Пополнение списка приращений по оси X
+# print(Dif_X)
+# print(Dif_Y)
+X = 0                                   # Точка старта (0, 0)
 Y = 0
-for i in range(Points):
-    X = X + Dif_X[i]
-    Y = Y + Dif_Y[i]
+for i in range(N_Steps):                # Цикл по шагам
+    X = X + Dif_X[i]                    # Суммирование приращений по оси Y
+    Y = Y + Dif_Y[i]                    # Суммирование приращений по оси X
 print(X, Y)
