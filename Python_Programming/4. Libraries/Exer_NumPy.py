@@ -18,6 +18,9 @@ print(c)
 d = b.shape
 print(d)
 
+Members = b.size
+print(Members)
+
 z = zeros((2, 3))
 print(z)
 
