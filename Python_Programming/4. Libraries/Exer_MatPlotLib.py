@@ -22,7 +22,7 @@ plt.show()                          # Для отображения график
 X = linspace(0, 5, 11)              # Ось абсцисс
 Y1 = X**2                           # Функция 1
 Y2 = X**3                           # Функция 2
-fig, ax = plt.subplots()            # ???
+fig, ax = plt.subplots()            # Фигура (fig), объект Axes (plot, ax)
 ax.plot(X, Y1, "b", label="y = x**2")       # Функция 1, цвет blue
 ax.plot(X, Y2, "g", label="y = x**3")       # Функция 2, цвет green
 ax.legend(loc = 2);                 # Легенда вверху слева (loc=2)
@@ -43,7 +43,7 @@ for i in range(Length):
     Y2.append(math.cos(math.radians(X[i])))
 # print(Y1)
 # print(Y2)
-fig, ax = plt.subplots()            # ???
+fig, ax = plt.subplots()            # Фигура (fig), объект Axes (plot, ax)
 ax.plot(X, Y1, "r", label="y = sin(x)")     # Функция 1, цвет red
 ax.plot(X, Y2, "b", label="y = cos(x)")     # Функция 2, цвет blue
 ax.legend(loc = 3);                 # Легенда внизу слева (loc=3)
