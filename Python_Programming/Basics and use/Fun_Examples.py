@@ -21,3 +21,9 @@ print("7", y)       # 31
 # print("8", y)     # a не задано
 y = s(11, 10, 10)
 print("9", y)
+print()
+List = ['foo']
+Reply1 = ("foo" in List)
+List.append("None")
+List.append("bar")
+print(List)

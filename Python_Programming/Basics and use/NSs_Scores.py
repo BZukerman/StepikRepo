@@ -1,4 +1,4 @@
-#11
+#14
 #create foo global
 #create bar foo
 #add global a
@@ -6,53 +6,65 @@
 #add foo c
 #add bar a
 #add bar d
-#get foo a      False
-#get foo b      True
-#get bar a      True
-#get bar b      False
-#get global a   True
+#get foo a      global
+#get foo b      foo
+#get bar a      bar
+#get bar b      foo
+#get global a   global
+#get bar z      None
+#get global d   None
 #
-N = int(input())
+N = int(input())                # Ввод числа директив
 print(N)
-# set = []
-Key_0 = "global"
-Namespaces = {Key_0: None}       # словарь с иерархией: Namespace: Parent
-Variables = {Key_0: []}          # словарь: Namespace: [Parameters]
-Res_Get = []
-def Crt(nsp, par):
-    Pair_1 = {nsp: par}
-    Namespaces.update(Pair_1)
-    Pair_2 = {nsp: []}
-    Variables.update(Pair_2)
-#    print("Variables:", Variables)
+Key_0 = "global"                # Ключ корневго узла
+Namespaces = {Key_0: None}      # словарь с иерархией {Namespace: Parent}
+Variables = {Key_0: []}         # словарь {Namespace: [Parameters]}
+Res_Get = []                    # Список результатов
+#
+def Crt(nsp, par):              # Функция реализации Create
+    Pair_1 = {nsp: par}         # Пара для обновления Namespace
+    Namespaces.update(Pair_1)   # Обновление Namespace
+    Pair_2 = {nsp: []}          # Пара для обновления Variables
+    Variables.update(Pair_2)    # Обновление Variables
     return
-def Add(nsp, par):
-    Var = Variables.get(nsp)
-#    print("Var:", Var)
-#    print("Var:", Var, "nsp:", nsp, "par:", par)
-    Var.extend(par)
-#    print("Var:", Var)
-    Pair = {nsp: Var}
-#    print("Pair:", Pair)
-    Variables.update(Pair)
-#    print("Variables:", Variables)
+#
+def Add(nsp, par):              # Функция реализации Add
+    Var = Variables.get(nsp)    # Получение данных по ключу nsp
+    Var.extend(par)             # Обновление списка данных
+    Pair = {nsp: Var}           # Пара для обновления Variables
+    Variables.update(Pair)      # Обновление словаря Variables
     return
-#    return nsp, par
-
-for i in range(N):
-    cmd, namesp, arg = input().split()
+#
+def Get(nsp, par):              # Функция реализации Get
+    Var = Variables.get(nsp)    # Получение данных по ключу nsp
+    Reply = (par in Var)        # Проверка par в списке Var
+    if Reply is True:           # Если данное есть в списке
+        Get_Out = nsp           # Ключ для обновляемых данных
+        Res_Get.append(Get_Out) # Обновление списка результатов
+        return
+    if ((Reply == False) and (nsp == "global")):    # Данных нет в списке и ключ не "global"
+        Get_Out = 'None'            # Нет родителя (корневой узел
+        Res_Get.append(Get_Out)     # Обновление списка результатов
+        return
+    if (Reply is False) and (nsp != "global"):      # Данных нет в списке и ключ "global"
+        Parent = Namespaces.get(nsp)    # Родитель уровня выше
+        Get(Parent, par)                # Рекурсия (вызов Get для родителя)
+        return
+#
+for i in range(N):                      # Цикл по номеру директивы
+    cmd, namesp, arg = input().split()  # Парсинг строки на элементы
 #    print("cmd:", cmd, "namesp:", namesp, "arg:", arg)
-    if cmd == "create":
-        Crt(namesp, arg)
-    if cmd == "add":
-        Add(namesp, arg)
-    if cmd == "get":
-        Get(namesp, arg)
-# Get_Out - получен из процедуры
-        Res_Get.append(Get_Out)
-print("Namespaces:", Namespaces)
-print("Variables:", Variables)
-print(Res_Get)
+    if cmd == "create":             # Если команда create
+        Crt(namesp, arg)            # Вызов процедуры Crt
+    if cmd == "add":                # Если команда add
+        Add(namesp, arg)            # Вызов процедуры add
+    if cmd == "get":                # Если команда get
+        Get(namesp, arg)            # Вызов процедуры Get
+print("Namespaces:", Namespaces)    # Печать словаря Namespaces
+print("Variables:", Variables)      # Печать словаря Variables
+# print(Res_Get)
+for mem in Res_Get:                 # Печать элементов списка реультатов
+    print(mem)
 
 
 
