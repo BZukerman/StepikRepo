@@ -16,35 +16,43 @@ N = int(input())
 print(N)
 # set = []
 Key_0 = "global"
-Namespaces = {Key_0: None}       # словарь с иерархией неймспейсов вида
-Variables = {Key_0: []}          # словарь с множеством переменных
+Namespaces = {Key_0: None}       # словарь с иерархией: Namespace: Parent
+Variables = {Key_0: []}          # словарь: Namespace: [Parameters]
+Res_Get = []
 def Crt(nsp, par):
-    Pair = {nsp: par}
-    Namespaces.update(Pair)
-#    Variables.update(Pair)
+    Pair_1 = {nsp: par}
+    Namespaces.update(Pair_1)
+    Pair_2 = {nsp: []}
+    Variables.update(Pair_2)
+#    print("Variables:", Variables)
     return
-#    return nsp, par
 def Add(nsp, par):
     Var = Variables.get(nsp)
+#    print("Var:", Var)
+#    print("Var:", Var, "nsp:", nsp, "par:", par)
     Var.extend(par)
-    Pair = {nsp: par}
+#    print("Var:", Var)
+    Pair = {nsp: Var}
+#    print("Pair:", Pair)
     Variables.update(Pair)
+#    print("Variables:", Variables)
     return
 #    return nsp, par
 
 for i in range(N):
     cmd, namesp, arg = input().split()
-    print("cmd:", cmd, "namesp:", namesp, "arg:", arg)
+#    print("cmd:", cmd, "namesp:", namesp, "arg:", arg)
     if cmd == "create":
-        print("Crt1", namesp, arg)
         Crt(namesp, arg)
-        print("Crt2", namesp, arg)
     if cmd == "add":
-        print("Add1", namesp, arg)
         Add(namesp, arg)
-        print("Add2", namesp, arg)
+    if cmd == "get":
+        Get(namesp, arg)
+# Get_Out - получен из процедуры
+        Res_Get.append(Get_Out)
 print("Namespaces:", Namespaces)
 print("Variables:", Variables)
+print(Res_Get)
 
 
 
