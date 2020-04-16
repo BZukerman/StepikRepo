@@ -37,9 +37,9 @@ class MoneyBox:
 #            print("Stop")
             return False
 #
-Volume = 20
+Volume = 30
 X = MoneyBox(Volume)
-Coin = 3
+Coin = 4
 print("Volume: ", Volume, "Input:", Coin)
 # Z = X.add(Coin)     # 7
 # print("The rest is: ", Z)
@@ -48,7 +48,7 @@ print("Volume: ", Volume, "Input:", Coin)
 # Z = X.add(Coin)     # 1
 # print("The rest is: ", Z)
 # Z = X.add(Coin)     # Stop
-# print("You can add only ", Z)            # 1
+# print("You can add only ", Z)     # 1
 # print(MoneyBox.W)
 # Тестовый цикл
 N = Volume // Coin
