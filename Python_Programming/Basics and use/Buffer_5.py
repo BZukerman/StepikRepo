@@ -2,7 +2,7 @@
 class Buffer:
     def __init__(self):     # Конструктор без аргументов
         Buffer.input = []
-        Buffer.buffer = [0, 0, 0, 0, 0]
+        Buffer.buffer = []
 #
     def add(self, *a):                  # Добавить следующую часть последовательности
         print("1. Buffer:", Buffer.buffer)
@@ -13,27 +13,40 @@ class Buffer:
         Steps = Length//5
         print("Steps:", Steps)
         if Length <= 5:                 # Получено <= 5
-            for k in range(Length):
-#                print(Buffer.buffer[k], a[k])
-                Buffer.buffer[k] = a[k]
-            print("2. Buffer:", Buffer.buffer)
-#            Buffer.buffer = [0, 0, 0, 0, 0]
+            (Buffer.input).extend(a)
+        print("2. Buffer.input:", Buffer.input)
+        Length = len(Buffer.input)
+        print("Length:", Length)
+#        Buffer.add(Buffer.input)
+#        return Buffer.input
         if Length > 5:                  # Получено > 5
+            Steps = Length // 5
+            print("Steps:", Steps)
             for step in range(Steps):
                 print("Step:", step)
-#                Summa = 0
-                Buffer.buffer = a[0 : 5]    # Слайс первых 5 элементов
+                Buffer.buffer = Buffer.input[0 : 5]    # Слайс первых 5 элементов
                 print("3. Buffer.buffer:", Buffer.buffer)
                 S = sum(Buffer.buffer)
                 print("Summa:", S)
-                a = a[5 :]          # Слайс с 5 элемента до конца
-                print("a:", a)
+#                a = Buffer.input[5 :]          # Слайс с 5 элемента до конца
+#                print("a:", a)
+#                Buffer.buffer = a
+                print("4. Buffer.buffer:", a)
 #
-#    def get_current_part(self):     # Вернуть сохраненные в текущий момент элементы
+    def get_current_part(self):     # Вернуть сохраненные в текущий момент элементы
                                     # последовательности в порядке, в котором они были добавлены
-#        return self.buffer
+        print("Get Buffer:", Buffer.buffer)
+#        return add.a
+        return Buffer.input
 #
 buf = Buffer()
 buf.add(1, 2, 3)
+buf.get_current_part()
 print()
-buf.add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+buf.add(4, 5, 6)
+buf.get_current_part()
+buf.add(7, 8, 9, 10)
+buf.get_current_part()
+#print()
+# buf.add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+# buf.get_current_part()
