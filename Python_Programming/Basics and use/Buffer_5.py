@@ -1,52 +1,59 @@
+# Вам дается последовательность целых чисел и вам нужно ее обработать и вывести на экран
+# сумму первой пятерки чисел из этой последовательности, затем сумму второй пятерки, и т. д.
+# Но последовательность не дается вам сразу целиком. С течением времени к вам поступают её
+# последовательные части. Например, сначала первые три элемента, потом следующие шесть,
+# потом следующие два и т. д.
+# Реализуйте класс Buffer, который будет накапливать в себе элементы последовательности и
+# выводить сумму пятерок последовательных элементов по мере их накопления.
+# Одним из требований к классу является то, что он не должен хранить в себе больше элементов,
+# чем ему действительно необходимо, т. е. он не должен хранить элементы, которые уже вошли
+# в пятерку, для которой была выведена сумма.
+# Класс должен иметь следующий вид (заголовки методов):
 #
 class Buffer:
     def __init__(self):     # Конструктор без аргументов
-        Buffer.input = []
-        Buffer.buffer = []
+        Buffer.input = []   # Буфер для ввода
+        Buffer.buffer = []  # Буфер для сохранения 5 элементов
 #
-    def add(self, *a):                  # Добавить следующую часть последовательности
-        print("1. Buffer:", Buffer.buffer)
-        print("Buffer.input:", a)
-        Length = len(a)
-        print("Length:", Length)
-#        Steps = int(Length/5 + 0.9)     # Округление до ближайшего целого в бОльшую сторону
-        Steps = Length//5
-        print("Steps:", Steps)
-        if Length <= 5:                 # Получено <= 5
-            (Buffer.input).extend(a)
-        print("2. Buffer.input:", Buffer.input)
-        Length = len(Buffer.input)
-        print("Length:", Length)
-#        Buffer.add(Buffer.input)
-#        return Buffer.input
-        if Length > 5:                  # Получено > 5
-            Steps = Length // 5
-            print("Steps:", Steps)
-            for step in range(Steps):
-                print("Step:", step)
-                Buffer.buffer = Buffer.input[0 : 5]    # Слайс первых 5 элементов
-                print("3. Buffer.buffer:", Buffer.buffer)
-                S = sum(Buffer.buffer)
-                print("Summa:", S)
-#                a = Buffer.input[5 :]          # Слайс с 5 элемента до конца
-#                print("a:", a)
-#                Buffer.buffer = a
-                print("4. Buffer.buffer:", a)
+    def add(self, *a):      # Добавить следующую часть последовательности
+#        print("1. Buffer:", Buffer.buffer)
+#        print("Buffer.input:", a)
+        (Buffer.input).extend(a)        # Добавдяем в буфер ввода
+        Length_in = len(Buffer.input)   # Длина буфера ввода
+#        print("Length_in:", Length_in)
+        if Length_in < 5:               # Получено <= 5
+#            print("2. Buffer.input:", Buffer.input)
+            Buffer.get_current_part(Buffer.input)   # Вызов метода передачи
+        if Length_in >= 5:              # Получено > 5
+            Steps = Length_in // 5      # Число пятерок
+#            print("Steps:", Steps)
+            for step in range(Steps):   # Цикл по пятеркам
+#                print("Step:", step)
+                Buffer.buffer = Buffer.input[0 : 5]     # Слайс первых 5 элементов
+#                print("3. Buffer.buffer:", Buffer.buffer)
+                S = sum(Buffer.buffer)  # Суммирование чисел пятерки
+                print(S)
+#                print("Summa:", S)
+                Buffer.input = Buffer.input[5 :]        # Слайс с 6-го элемента до конца
+#                print("4. Buffer.input:", Buffer.input)
+            Buffer.get_current_part(Buffer.input)       # Вызов метода передачи
 #
     def get_current_part(self):     # Вернуть сохраненные в текущий момент элементы
                                     # последовательности в порядке, в котором они были добавлены
-        print("Get Buffer:", Buffer.buffer)
-#        return add.a
-        return Buffer.input
+#        print("Get:", Buffer.input)
+        return Buffer.input         # Возврат последнего остатка
 #
 buf = Buffer()
-buf.add(1, 2, 3)
-buf.get_current_part()
-print()
-buf.add(4, 5, 6)
-buf.get_current_part()
-buf.add(7, 8, 9, 10)
-buf.get_current_part()
+# Варианты для отладки
 #print()
-# buf.add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-# buf.get_current_part()
+#buf.add(1, 2, 3)
+#print()
+#buf.add(4, 5, 6)
+#print()
+#buf.add(7, 8, 9, 10)
+#print()
+#buf.add(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120)
+buf.add(1, 2, 3)
+buf.add(4, 5, 6)
+buf.add(7, 8, 9, 10)
+buf.add(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
