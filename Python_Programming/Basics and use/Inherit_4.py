@@ -37,8 +37,8 @@ print("Req:", Req)
 Parents = set()
 Pars = []
 Relatives = {}
-print(Parents)
-print(Relatives)
+# print(Parents)
+# print(Relatives)
 Keys = []
 Values = []
 Space = " "
@@ -77,18 +77,17 @@ for i in range(Classes):
 #print("Parents:", Parents)
 print("Keys:", Keys)
 print("Values:", Values)
+print("Relatives:")
 # Заполнение словаря Relatives
 for k in range(Classes):
     Key_k = Keys[k]
     Val_k = Pars[k]
 #    Val_k.pop(Space)
-#    print(Key_k, Val_k)
+    print(Key_k, ":", Val_k)
     Pair_k = {Key_k: Val_k}
     Relatives.update(Pair_k)
-print("Relatives:", Relatives)
-#for Pair_k in Relatives:
-#    Pair_k = Relatives(k).popitem()
-#    print(Pair_k)
+#print("Relatives:", Relatives)
+
 
 
 
