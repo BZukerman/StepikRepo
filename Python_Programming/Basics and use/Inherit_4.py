@@ -1,7 +1,8 @@
 # Ввод данных при отладке
-Classes = 4
-Inher = [['AA'], ['BB', 'AA'], ['CC', 'AA'], ['DD', 'BB CC']]
-Req = [['AA', 'BB'], ['BB', 'DD'], ['CC', 'DD'], ['DD', 'AA']]
+Classes = 15
+Inher = [['GG','FF'],['AA'],['BB','AA'],['CC','AA'],['DD','BB CC'],['EE','DD'],['FF','DD'],['XX'],['YY','XX AA'],['ZZ','XX'],['VV','ZZ YY'],['WW','VV'],['QQ','PP'],['QQ','RR'],['QQ','SS']]
+Requests = 9
+Req = [['AA','GG'],['AA','ZZ'],['AA','WW'],['XX','WW'],['XX','QWE'],['AA','XX'],['XX','XX'],['ll','ll'],['QQ']]
 #
 #Inher_i = []
 #Inher = []
@@ -22,6 +23,7 @@ print("Inher:", Inher)
 #    Req_j = input().split()
 #    print("Req_j:", Req_j)
 #    Req.append(Req_j)
+print("Requests:", Requests)
 print("Req:", Req)
 # Словарь Relatives = {Keys : Pars}
 # Множество Pars. Метод add
@@ -59,8 +61,30 @@ for k in range(Classes):
     print(Key_k, ":", Val_k)
     Pair_k = {Key_k: Val_k}
     Relatives.update(Pair_k)
-#print("Relatives:", Relatives)
-
+print("Relatives:", Relatives)
+# Выполнение запросов
+Req_i = []
+Again = False
+while Again == False:
+    for i in range(Requests):
+        Req_i = Req[i]
+        Father_i = Req_i[0]
+        Kid_i = Req_i[1]
+        Key_i = Kid_i
+        Parents_i = Relatives.get(Key_i)
+        print("i=:", i, "Father_i:", Father_i, "Kid_i:", Kid_i, "Parents_i:", Parents_i)
+        if Kid_i not in Keys:
+            Pair_i = {Kid_i: 'object'}
+            Relatives.update(Pair_i)
+            print("Relatives_New:", Relatives)
+            Classes = Classes + 1
+            Again = True
+            print(Again, "Requests:", Requests)
+            continue
+        if Father_i in Parents_i:
+            print("Yes")
+        else:
+            print("No")
 
 
 
