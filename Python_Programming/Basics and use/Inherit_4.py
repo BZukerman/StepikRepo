@@ -40,9 +40,12 @@ Vals = []
 for i in range(Classes):
     Val_i = []
     Val_ii = []
+    Sum_i = []
     Mem_i = Inher[i]
     Len_i = len(Mem_i)
     Key_i = Mem_i[0]
+    print("i:", i, "Key_i:", Key_i)
+    Mem_Old = []
 #    Val_h = Relatives.get(Key_i)
 #    print("Val_h:", Val_h)
     if Key_i not in Keys:
@@ -55,37 +58,59 @@ for i in range(Classes):
     if Len_i == 1:
         Val_i = "object"
         Values.append(Val_i)
+        Pair_i = {Key_i: Val_i}
         Pars.append(Val_i)
+        Relatives.update(Pair_i)
         print("i:", i, "Key_i:", Key_i, "Val_i:", Val_i)
-
     if Len_i == 2:
-        Val_i = Mem_i[1]
+        if Key_i in Keys:
+            Mem_Old = Relatives.get(Key_i)
+            Val_i = Mem_i[1].split()
+            print("i:", i, "Mem_Old:", Mem_Old, "Val_i:", Val_i)
+            if Mem_Old == None:
+                Sum_i = Val_i
+            if Mem_Old != None:
+#                Sum_i = Mem_Old + Val_i
+                Val_i = Val_i + Mem_Old
+#            Sum_i = Mem_Old + Val_i
+            Pair_i = {Key_i: Sum_i}
+            print("in", "Pair_i:", Pair_i)
+            Relatives.update(Pair_i)
+#            continue
+#            Val_i.append(Add_i)
+        if Key_i not in Keys:
+#            Mem_i = Inher[1]
+#            Mem_Old = Mem_i.split()
+            Val_i = Mem_i
+            Pair_i = {Key_i: Val_i}
+            print("not in", "Pair_i:", Pair_i)
+#            continue
+#        Val_i = Mem_i
         print("Val_i:", Val_i)
-        Val_ii = Val_i.split()
-        Len_ii = len(Val_ii)
-        print("i:", i, "Key_i:", Key_i, "Val_ii:", Val_ii, "Len_ii:", Len_ii)
-#        for l in range(Len_ii):
-#            Mem_l = Val_ii[l]
-#            Values.append(Mem_l)
-#            Val_i.append(Mem_l)
-#            Pars.append(Val_i)
-        Values.append(Val_ii)
-        Pars.append(Val_ii)
+#        Val_ii = Val_i.split()
+#        Len_ii = len(Val_ii)
+#        Len_ii = len(Val_i)
+        print("i:", i, "Key_i:", Key_i, "Val_i:", Val_i)
+        Values.append(Val_i)
+#        Pars.append(Val_ii)
+        Pars.append(Val_i)
+        Pair_i = {Key_i: Val_i}
+        Relatives.update(Pair_i)
+
 print("Keys:", Keys)
-#print("NKeys:", NKeys)
 print("Pars:", Pars)
 print("Values:", Values)
 print("Relatives:")
-# Заполнение словаря Relatives
+#    Pair_k = {Key_k: Val_k}
+#    Relatives.update(Pair_k)
+print("Relatives:", Relatives)
+# Печать словаря Relatives по парам Key:Values
 N_Keys = len(Keys)
 print("N_Keys:", N_Keys)
-for k in range(N_Keys):
-    Key_k = Keys[k]
-    Val_k = Pars[k]
-    print(Key_k, ":", Val_k)
-    Pair_k = {Key_k: Val_k}
-    Relatives.update(Pair_k)
-print("Relatives:", Relatives)
+#for k in range(N_Keys):
+#    Key_k = Keys[k]
+#    Val_k = Pars[k]
+#    print(Key_k, ":", Val_k)
 # Выполнение запросов
 #Req_i = []
 #Again = False
