@@ -1,3 +1,15 @@
+def find_path(graph, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return path
+#    if not graph.has_key(start):
+    if start not in graph:
+        return None         # Не понял ...
+    for node in graph[start]:
+        if node not in path:
+            newpath = find_path(graph, node, end, path)
+            if newpath: return newpath
+    return None             # Не понял ...
 # Ввод данных при отладке
 Classes = 15
 Inher = [['GG','FF'],['AA'],['BB','AA'],['CC','AA'],['DD','BB CC'],['EE','DD'],['FF','DD'],['XX'],['YY','XX AA'],['ZZ','XX'],['VV','ZZ YY'],['WW','VV'],['QQ','PP'],['QQ','RR'],['QQ','SS']]
@@ -116,8 +128,13 @@ for i in range(Requests):
     Father_i = Req_i[0]
     Kid_i = Req_i[1]
     Parents_i = Relatives.get(Key_i)
-    print(Req_i, Father_i, Kid_i, Parents_i)
-    if (Father_i in Parents_i) or Father_i == Kid_i:
+#    print(Req_i, Father_i, Kid_i, Parents_i)
+#    if (Father_i in Parents_i) or Father_i == Kid_i:
+#        print("Yes")
+#    else:
+#        print("No")
+    Ways = find_path(Relatives, Kid_i, Father_i,  path=[])
+    if Ways != None:
         print("Yes")
     else:
         print("No")
