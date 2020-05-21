@@ -50,7 +50,7 @@ class ExtendedStack(list):
         First = self.pop()
         Second = self.pop()
         if Second == 0:
-            print("Zero divide")
+            print("Zero divide!")
             quit()
         Result = First // Second
         self.append(Result)
