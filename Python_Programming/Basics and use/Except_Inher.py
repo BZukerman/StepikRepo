@@ -1,12 +1,3 @@
-# Вам необходимо отвечать на запросы, является ли один класс предком другого класса.
-# Для каждого запроса выведите в отдельной строке слово "Yes", если класс 1 является
-# предком класса 2, и "No", если не является.
-# Описание запросов в формате <имя класса 1> <имя класса 2>.
-# Класс A является предком класса B, если:
-# A = B;
-# A - прямой предок B;
-# существует такой класс C, что C - прямой предок B и A - предок C.
-#
 # Источник для функции find_path:
 # http://www.infocity.kiev.ua/prog/python/content/pytonesse_3.shtml
 #
@@ -22,36 +13,27 @@ def find_path(graph, start, end, path=[]):  # Функция заимствов�
             newpath = find_path(graph, node, end, path)
             if newpath: return newpath
     return None
-# Ввод данных при отладке
-# Classes = 15
-# Inher = [['GG','FF'],['AA'],['BB','AA'],['CC','AA'],['DD','BB CC'],['EE','DD'],['FF','DD'],['XX'],['YY','XX AA'],['ZZ','XX'],['VV','ZZ YY'],['WW','VV'],['QQ','PP'],['QQ','RR'],['QQ','SS']]
-# Classes = 10
-# Inher = [['AA'],['BB', 'AA'],['CC','AA'],['DD','BB CC'],['EE','DD'],['HH'],['KK'],['FF','HH KK'],['GG','CC FF'],['LL','GG']]
-# Requests = 9
-# Req = [['AA','GG'],['AA','ZZ'],['AA','WW'],['XX','WW'],['XX','QWE'],['AA','XX'],['XX','XX'],['ll','ll'],['QQ','QQ']]
-#Requests = 10
-#Req = [['AA','BB'],['BB','DD'],['CC','DD'],['DD','AA'],['CC','EE'],['GG','EE'],['KK','LL'],['AA','LL'],['KK','EE'],['BB','BB']]
 #
 Inher_i = []        # Пустые вспомогательные списки
-Inher = []          # наследования и запросов
-Req_j = []
-Req = []
+Inher = []          # наследования классов и исключений
+Exc_j = []
+Exc = []
 # Ввод классов и наследований
 Classes = int(input())      # Число описаний классов
-# print("Classes:", Classes)
+print("Classes:", Classes)
 for i in range(Classes):
     Inher_i = input().split(" : ")  # Парсинг данных
 #    print("Inher_i:", Inher_i)
     Inher.append(Inher_i)       # Добавали в список
 # print("Inher:", Inher)
-# Ввод эапросов
-Requests = int(input())     # Число запросов
-# print("Requests:", Requests)
-for j in range(Requests):
-    Req_j = input().split()     # Парсинг запроса
-#    print("Req_j:", Req_j)
-    Req.append(Req_j)           # Добавали в список
-# print("Req:", Req)
+# Ввод исключений
+Excepts = int(input())     # Число запросов
+print("Excepts:", Excepts)
+for j in range(Excepts):
+    Exc_j = input().split()     # Парсинг запроса
+#    print("Exc_j:", Exc_j)
+    Exc.append(Exc_j)           # Добавали в список
+# print("Exc:", Exc)
 # Словарь Relatives = {Keys : Pars}
 # Множество Keys.
 # Множество Pars. Метод add
@@ -92,33 +74,13 @@ for i in range(Classes):
         Relatives.update(Pair_i)        # Обновление словаря
 # print("Keys:", Keys)
 # print("Pars:", Pars)
-# print("Relatives:")
+print("Relatives:")
 # print(Relatives)
 # Печать словаря Relatives по парам Key:Pars
 N_Keys = len(Keys)          # Длина списка ключей
-# print("N_Keys:", N_Keys)
-# for k in range(N_Keys):
-#     Key_k = Keys[k]
-#     Val_k = Relatives.get(Key_k)
-#     print(Key_k, ":", Val_k)
-# Выполнение запросов
-Req_i = []
-# print("Results:")
-for i in range(Requests):       # Цикл по запросам
-    Req_i = Req[i]
-    Father_i = Req_i[0]         # Предок
-    Kid_i = Req_i[1]            # Потомок
-    Parents_i = Relatives.get(Key_i)    # Запрос предков по ключу
-#    print(Req_i, Father_i, Kid_i, Parents_i)
-#    if (Father_i in Parents_i) or Father_i == Kid_i:
-#        print("Yes")
-#    else:
-#        print("No")
-    if Father_i == Kid_i:       # Странное свойство Python
-        print("Yes")
-        continue
-    Ways = find_path(Relatives, Kid_i, Father_i,  path=[])  # Вызов функции
-    if Ways != None:        # Интерпретация возврата из функции и печать
-        print("Yes")
-    else:
-        print("No")
+print("N_Keys:", N_Keys)
+for k in range(N_Keys):
+    Key_k = Keys[k]
+    Val_k = Relatives.get(Key_k)
+    print(Key_k, ":", Val_k)
+#
