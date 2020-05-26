@@ -50,7 +50,7 @@ Requests = int(input())     # Число запросов
 for j in range(Requests):
     Req_j = input().split()     # Парсинг запроса
 #    print("Req_j:", Req_j)
-    Req.append(Req_j)           # Добавали в список
+    Req.append(Req_j)           # Добавили в список
 # print("Req:", Req)
 # Словарь Relatives = {Keys : Pars}
 # Множество Keys.
@@ -103,17 +103,13 @@ N_Keys = len(Keys)          # Длина списка ключей
 #     print(Key_k, ":", Val_k)
 # Выполнение запросов
 Req_i = []
-# print("Results:")
 for i in range(Requests):       # Цикл по запросам
+    Key_i = Keys[i]
     Req_i = Req[i]
     Father_i = Req_i[0]         # Предок
     Kid_i = Req_i[1]            # Потомок
     Parents_i = Relatives.get(Key_i)    # Запрос предков по ключу
 #    print(Req_i, Father_i, Kid_i, Parents_i)
-#    if (Father_i in Parents_i) or Father_i == Kid_i:
-#        print("Yes")
-#    else:
-#        print("No")
     if Father_i == Kid_i:       # Странное свойство Python
         print("Yes")
         continue
@@ -122,3 +118,4 @@ for i in range(Requests):       # Цикл по запросам
         print("Yes")
     else:
         print("No")
+

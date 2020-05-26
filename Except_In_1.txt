@@ -1,0 +1,18 @@
+10
+aa
+bb
+cc
+dd : aa
+ee : aa bb
+gg : cc
+ff : bb
+hh : dd ff
+kk : gg
+ll : gg
+6
+ee
+hh
+cc
+kk
+ll
+gg
