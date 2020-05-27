@@ -19,7 +19,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_1.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_2.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())        # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -83,21 +83,23 @@ for i in range(Classes):
         Pars.append(Val_i)              # дописали в список предков
         Pair_i = {Key_i: Val_i}
         Relatives.update(Pair_i)        # Обновление словаря
+N_Keys = len(Keys)          # Длина списка ключей
+print("N_Keys:", N_Keys)
 print("Keys:", Keys)
 print("Pars:", Pars)
 print("Relatives:")
 # print(Relatives)
 # Печать словаря Relatives по парам Key:Pars
-N_Keys = len(Keys)          # Длина списка ключей
-print("N_Keys:", N_Keys)
+# N_Keys = len(Keys)          # Длина списка ключей
+# print("N_Keys:", N_Keys)
 for k in range(N_Keys):
     Key_k = Keys[k]
     Val_k = Relatives.get(Key_k)
     print(Key_k, ":", Val_k)
 # Обработка исключений
 Req_i = []
-Result_1 = []
-Result_2 = []
+Result = []
+# Result_2 = []
 Extra = []                      # Массив избыточных исключений
 for i in range(Excepts):       # Цикл по запросам
 #    Key_i = Keys[i]
@@ -110,17 +112,24 @@ for i in range(Excepts):       # Цикл по запросам
 #    Parents_i = Relatives.get(Key_i)    # Запрос предков по ключу
 #    print(Req_i, Father_i, Kid_i, Parents_i)
         if Father_j == Kid_i:       # Странное свойство Python
-#        print("Yes")
             continue
 #        print("Kid_i:", Kid_i, "Father_j:", Father_j)
         Ways = find_path(Relatives, Kid_i, Father_j,  path=[])  # Вызов функции
-        if Ways != None:        # Интерпретация возврата из функции и печать
-#        print("Yes")
-            Result_1.append(Ways)
-            Result_2.extend(Ways)
-        else:
-#        print("No")
+        print("Ways:", Ways)
+        if Ways != None:        # Путь есть
+            Result.append(Ways)       # Пути как списки
+        else:                   # Путь отсутствует
             continue
-print("Result_1:", Result_1)
-Length = len(Result_1)
-print("Result_2:", Result_2)
+print("Result Ways:", Result)
+N_Ways = len(Result)
+print("N_Ways:", N_Ways)
+print("Extra Exceptions:")
+for i in range(N_Ways):
+    Line_i = Result[i]
+    Extra_i = Line_i[0]
+    if Extra_i in Extra:
+        continue
+    else:
+        print(Extra_i)
+        Extra.append(Extra_i)
+# print("Extra:", Extra)
