@@ -19,7 +19,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_2.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_1.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())        # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -88,7 +88,7 @@ print("N_Keys:", N_Keys)
 print("Keys:", Keys)
 print("Pars:", Pars)
 print("Relatives:")
-# print(Relatives)
+print(Relatives)
 # Печать словаря Relatives по парам Key:Pars
 # N_Keys = len(Keys)          # Длина списка ключей
 # print("N_Keys:", N_Keys)
@@ -101,7 +101,7 @@ Req_i = []
 Result = []
 # Result_2 = []
 Extra = []                      # Массив избыточных исключений
-for i in range(Excepts):       # Цикл по запросам
+for i in range(Excepts):       # Цикл по исключениям
 #    Key_i = Keys[i]
 #    Exc_i = Exc[i]
     Kid_i = (Exc[i])[0]
@@ -112,24 +112,47 @@ for i in range(Excepts):       # Цикл по запросам
 #    Parents_i = Relatives.get(Key_i)    # Запрос предков по ключу
 #    print(Req_i, Father_i, Kid_i, Parents_i)
         if Father_j == Kid_i:       # Странное свойство Python
+#            print("Yes")
             continue
 #        print("Kid_i:", Kid_i, "Father_j:", Father_j)
         Ways = find_path(Relatives, Kid_i, Father_j,  path=[])  # Вызов функции
         print("Ways:", Ways)
         if Ways != None:        # Путь есть
+#            print("Yes")
             Result.append(Ways)       # Пути как списки
         else:                   # Путь отсутствует
+#            print("No")
             continue
 print("Result Ways:", Result)
 N_Ways = len(Result)
 print("N_Ways:", N_Ways)
-print("Extra Exceptions:")
 for i in range(N_Ways):
+# for i in range(-1, -(N_Ways+1), -1):
     Line_i = Result[i]
-    Extra_i = Line_i[0]
-    if Extra_i in Extra:
+    print("Line_i:", Line_i)
+    Len_i = len(Line_i)
+    if Line_i == None:          # Commented by Александр Широкожухов
         continue
-    else:
-        print(Extra_i)
-        Extra.append(Extra_i)
-# print("Extra:", Extra)
+    for j in range(Len_i):
+#    for j in range(-1, -(Len_i+1), -1):
+        Mem_j = Line_i[j]
+        print("Mem_j:", Mem_j)
+        if Mem_j in Keys:
+            if Mem_j in Extra:
+                continue
+            Extra.append(Mem_j)         #
+            continue
+        if Mem_j not in Keys:
+#            Parents = Line_i
+            if Line_i != None:
+                continue
+            if Mem_j in Exc:
+                continue
+            else:
+                if Mem_j in Extra:
+                    continue
+                Extra.append(Mem_j)     #
+Length = len(Extra)
+print("Extra Exceptions:")
+for i in range(Length):
+    print(Extra[i])
