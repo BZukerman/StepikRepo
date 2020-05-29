@@ -19,7 +19,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_2.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_1.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())        # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -63,7 +63,7 @@ for i in range(Classes):
     if Key_i not in Keys:
         Keys.append(Key_i)      # Добавление ключа в список
     if Len_i == 1:              # Если в описании только один потомок
-        Val_i = "object"
+        Val_i = ["object"]
         Pair_i = {Key_i: Val_i}
         Pars.append(Val_i)
         Relatives.update(Pair_i)    # Обновление словаря
@@ -88,7 +88,7 @@ print("N_Keys:", N_Keys)
 print("Keys:", Keys)
 print("Pars:", Pars)
 print("Relatives:")
-# print(Relatives)
+print(Relatives)
 # Печать словаря Relatives по парам Key:Pars
 # N_Keys = len(Keys)          # Длина списка ключей
 # print("N_Keys:", N_Keys)
@@ -114,8 +114,8 @@ for i in range(Excepts):       # Цикл по исключениям
         if Father_j == Kid_i:       # Странное свойство Python
 #            print("Yes")
             continue
-#        print("Kid_i:", Kid_i, "Father_j:", Father_j)
-        Ways = find_path(Relatives, Kid_i, Father_j,  path=[])  # Вызов функции
+#        print("Kid_i:", Kid_i, ":", Father_j)
+        Ways = find_path(Relatives, Kid_i, Father_j)  # Вызов функции
         print("Ways:", Ways)
         if Ways != None:        # Путь есть
 #            print("Yes")
@@ -123,35 +123,47 @@ for i in range(Excepts):       # Цикл по исключениям
         else:                   # Путь отсутствует
 #            print("No")
             continue
-print("Result Ways:", Result)
 N_Ways = len(Result)
-# print("N_Ways:", N_Ways)
+print("N_Ways:", N_Ways)
+print("Result Ways:", Result)
 for i in range(N_Ways):
 # for i in range(-1, -(N_Ways+1), -1):
     Line_i = Result[i]
     print("Line_i:", Line_i)
     Len_i = len(Line_i)
-    if Line_i == None:          # Commented by Александр Широкожухов
+    if Line_i == None:          # Commented by Dimitri Dinner
         continue
     for j in range(Len_i):
 #    for j in range(-1, -(Len_i+1), -1):
         Mem_j = Line_i[j]
 #        print("Mem_j:", Mem_j)
-        if Mem_j in Keys:
-            if Mem_j in Extra:
-                continue
-            Extra.append(Mem_j)         #
+#        if Mem_j in Keys:
+        if Mem_j in Extra:
+#            Extra.append(Mem_j)
             continue
-        if Mem_j not in Keys:
+#            Extra.append(Mem_j)         #
+#            continue
+        if Mem_j not in Extra:  # Получить всех родителей (из словаря!)
 #            Parents = Line_i
-            if Line_i != None:
-                continue
-            if Mem_j in Exc:
-                continue
-            else:
-                if Mem_j in Extra:
-                    continue
-                Extra.append(Mem_j)     #
+            Parents = Relatives.get(Mem_j)
+            Len_p = len(Parents)
+            print("Parents:", Parents, Len_p)
+            for m in range(Len_p):
+                if Parents[m] not in Exc:     # ??? Extra Exc???
+#                    Extra.append(Parents[m])
+                    if Parents[m] != "object":
+                        Extra.append(Parents[m])
+                    else:
+                        continue
+#            if Line_i != None:
+#                continue
+#            if Mem_j in Exc:
+#                continue
+#            else:
+#                if Mem_j in Extra:
+#                    Extra.append(Mem_j)  #
+#                    continue
+#                Extra.append(Mem_j)     #
 Length = len(Extra)
 print("Extra Exceptions:")
 for i in range(Length):
