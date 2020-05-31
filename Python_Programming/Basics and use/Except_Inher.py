@@ -19,7 +19,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_2.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_1.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())        # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -88,7 +88,7 @@ print("N_Keys:", N_Keys)
 print("Keys:", Keys)
 print("Pars:", Pars)
 print("Relatives:")
-# print(Relatives)
+print(Relatives)
 # Печать словаря Relatives по парам Key:Pars
 # N_Keys = len(Keys)          # Длина списка ключей
 # print("N_Keys:", N_Keys)
