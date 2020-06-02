@@ -83,7 +83,7 @@ for i in range(Classes):
         Pars.append(Val_i)              # Дописали в список предков
         Pair_i = {Key_i: Val_i}
         Relatives.update(Pair_i)        # Обновление словаря
-N_Keys = len(Keys)          # Длина списка ключей
+N_Keys = len(Keys)                      # Длина списка ключей
 print("N_Keys:", N_Keys)
 print("Keys:", Keys)
 print("Pars:", Pars)
@@ -104,7 +104,7 @@ for i in range(Excepts):        # Цикл по исключениям
     Kid_i = (Exc[i])[0]         # Потомок
     for j in range(Excepts):    # Цикл по исключениям
 #        Exc_i = Exc[i]
-        Father_j = (Exc[j])[0]         # Предок Exc[j]
+        Father_j = (Exc[j])[0]          # Предок Exc[j]
 #        Kid_i = Exc_i[1]               # Потомок
 #    Parents_i = Relatives.get(Key_i)    # Запрос предков по ключу
 #    print(Req_i, Father_i, Kid_i, Parents_i)
@@ -112,9 +112,9 @@ for i in range(Excepts):        # Цикл по исключениям
             continue
 #        print("Kid_i:", Kid_i, "Father_j:", Father_j)
         Ways = find_path(Relatives, Kid_i, Father_j)  # Вызов функции
-        if Ways != None:        # Путь есть
-            Result.append(Ways)       # Пути как списки
-        else:                   # Путь отсутствует
+        if Ways != None:            # Путь есть
+            Result.append(Ways)     # Пути как списки
+        else:                       # Путь отсутствует
             continue
 N_Ways = len(Result)
 print("N_Ways:", N_Ways)

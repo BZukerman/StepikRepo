@@ -120,11 +120,11 @@ for i in range(Excepts):        # Цикл по заданным исключе�
 #    Key_i = Keys[i]
 #    Exc_i = Exc[i]
     Kid_i = (Exc[i])[0]
-    for j in range(Excepts):    # Цикл по ключам
+    for j in range(Excepts):            # Цикл по ключам
 #        Exc_i = Exc[i]
-        Father_j = (Exc[j])[0]         # Предок
-#        Kid_i = Exc_i[1]              # Потомок
-#    Parents_i = Relatives.get(Key_i)    # Запрос предков по ключу
+        Father_j = (Exc[j])[0]          # Предок
+#        Kid_i = Exc_i[1]               # Потомок
+#    Parents_i = Relatives.get(Key_i)   # Запрос предков по ключу
 #    print(Req_i, Father_i, Kid_i, Parents_i)
         if Father_j == Kid_i:       # Странное свойство Python
             continue
