@@ -8,3 +8,7 @@ ZeroDivisionError
 OSError
 ArithmeticError
 FileNotFoundError
+
+Result: FileNotFoundError
+My both replies: ZeroDivisionError FileNotFoundError
+

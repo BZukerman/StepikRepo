@@ -1,0 +1,26 @@
+10
+a
+b
+c : a b
+d : c b
+e : d
+f : e
+g : f a d e
+h : g
+j : h c d e g b
+k : j c a
+10
+d
+b
+a
+h
+f
+k
+c
+j
+g
+e
+
+Ответ: h f k c j g
+My reply (Except_Inher_1) : d c h g f e k j
+My reply (Except_Inher)   : d c j h g f e k

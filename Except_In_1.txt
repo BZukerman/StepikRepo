@@ -16,3 +16,6 @@ cc
 kk
 ll
 gg
+
+Result: kk gg ll
+My both  results: kk gg ll
