@@ -52,7 +52,7 @@ Pars = []               # Вспомогательные списки
 Keys = []               # ключей
 Vals = []               # и данных (предки)
 Relatives = {}          # Пустой словарь родственных описаний
-for i in range(Classes):
+for i in range(Classes):        # Цикл по всем предкам
     Val_i = []          # Вспомогательные списки
     Val_ii = []
     Sum_i = []
@@ -149,6 +149,7 @@ for i in range(N_Ways):
                         Extra.append(Mem_j)     # Запись в список лишних
 #                    print("Extra:", Extra)
 Length = len(Extra)             # Длина списка лишних исключений
+print("Number of Exceptions:", Length)
 print("Extra Exceptions:")      # Лишние исключения
 for i in range(Length):         # Печать пострчно
     print(Extra[i])
