@@ -134,35 +134,39 @@ for i in range(N_Ways):
         Mem_j = Line_i[j]
         Inspected.append(Mem_j)
         print("j:", j, "Mem_j:", Mem_j, "Inspected:", Inspected)
-        if Mem_j in Keys:       # Если есть в списке ключей
+#        if Mem_j in Keys:       # Если есть в списке ключей
+#            print("1",i, j, Mem_j)
 #            if Mem_j in Extra:  # Если есть в списке лишних
-            if Mem_j in Inspected:
-                continue
+#            if Mem_j in Exc:
+#                print("2", i, j, Mem_j)
+#                continue
 #            if Mem_j not in Extra:      # Если нет в списке лишних
-            if Mem_j not in Inspected:
-                Parents_j = Relatives.get(Mem_j)    # Получил предкoв
+        if Mem_j not in Extra:
+            Parents_j = Relatives.get(Mem_j)    # Получил предкoв
+            print("Parents_j:", Parents_j)
+            if Parents_j == ["object"]:
                 print("Parents_j:", Parents_j)
-                if Parents_j == ["object"]:
-                    continue
-                Len_Par = len(Parents_j)        # Длина списка предков
-                print("j:", j, "Parents_j:", Parents_j, "Len_Par:", Len_Par)
-                for k in range(Len_Par):        # Цикл по предкам
-                    P_k = Parents_j[k]
-                    print("k:", k, "P_k:", P_k)
-                    print("Exc_1:", Exc)
+                continue
+            Len_Par = len(Parents_j)        # Длина списка предков
+            print("j:", j, "Parents_j:", Parents_j, "Len_Par:", Len_Par)
+            for k in range(Len_Par):        # Цикл по предкам
+                P_k = Parents_j[k]
+                print("k:", k, "P_k:", P_k)
+                print("Exc_1:", Exc)
 #                    if [P_k] in Exc:              # Если предок в списке исключений
-                    if [P_k] in Inspected:
-                        print("Exc_2:", Exc)
-                        if Mem_j in Exc:  # Исключить повторную запись
-                            Extra.append(Mem_j)     # Запись в список лишних
-                            print("Extra:", Extra)
+                if [P_k] in Exc:
+                    print("Exc_2:", Exc)
+                    if Mem_j not in Extra:  # Исключить повторную запись
+                        Extra.append(Mem_j)     # Запись в список лишних
                         print("Extra:", Extra)
-                        continue
+                    print("1. Extra:", Extra)
+                    continue
 #                    if [P_k] not in Extra:      # Если предка нет в списке исключений
-                    if [P_k] not in Inspected:
-                        if Mem_j not in Exc:  # Исключить повторную запись
-#                            Extra.append(Mem_j)     # Запись в список лишних
-                            print("Extra:", Extra)
+                if [P_k] not in Extra:
+#                    if Mem_j not in Exc:  # Исключить повторную запись
+                    Extra.append(Mem_j)     # Запись в список лишних
+                    print("2. Extra:", Extra)
+                print("Extra:", Extra)
 Length = len(Extra)             # Длина списка лишних исключений
 print("Number of Exceptions:", Length)
 print("Extra Exceptions:")      # Лишние исключения
