@@ -137,11 +137,13 @@ for i in range(N_Ways):
 #        if Mem_j in Keys:       # Если есть в списке ключей
 #            print("1",i, j, Mem_j)
 #            if Mem_j in Extra:  # Если есть в списке лишних
-#            if Mem_j in Exc:
-#                print("2", i, j, Mem_j)
-#                continue
+        if [Mem_j] in Exc:
+            print("2", i, j, Mem_j)
+#            Extra.append(Mem_j)
+            print("Extra:", Extra)
+#            continue
 #            if Mem_j not in Extra:      # Если нет в списке лишних
-        if Mem_j not in Extra:
+        if [Mem_j] not in Extra:
             Parents_j = Relatives.get(Mem_j)    # Получил предкoв
             print("Parents_j:", Parents_j)
             if Parents_j == ["object"]:
@@ -157,7 +159,7 @@ for i in range(N_Ways):
                 if [P_k] in Exc:
                     print("Exc_2:", Exc)
                     if Mem_j not in Extra:  # Исключить повторную запись
-                        Extra.append(Mem_j)     # Запись в список лишних
+#                        Extra.append(Mem_j)     # Запись в список лишних
                         print("Extra:", Extra)
                     print("1. Extra:", Extra)
                     continue
