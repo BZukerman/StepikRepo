@@ -1,0 +1,14 @@
+4
+A
+Z : A
+O
+F : O
+4
+Z
+O
+A
+F
+
+Result: F
+My replies: F
+

@@ -19,7 +19,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_1.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_5.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())   # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -120,55 +120,45 @@ N_Ways = len(Result)
 print("N_Ways:", N_Ways)
 print("Result Ways:", Result)
 #
-P_k = []
-Parents_j = []
-Mem_j = []
+Exc_i = []
+Ways_j = []
 Inspected = []
-for i in range(N_Ways):
-    Line_i = Result[i]
-    print("i:", i, "Line_i:", Line_i)
-    Len_i = len(Line_i)
-    if Line_i == None:          # Commented by Dimitri Dinner
-        continue
-    for j in range(Len_i):      # Цикл по путям от заданных исключений
-        Mem_j = Line_i[j]
-        Inspected.append(Mem_j)
-        print("j:", j, "Mem_j:", Mem_j, "Inspected:", Inspected)
-#        if Mem_j in Keys:       # Если есть в списке ключей
-#            print("1",i, j, Mem_j)
-#            if Mem_j in Extra:  # Если есть в списке лишних
-        if [Mem_j] in Exc:
-            print("2", i, j, Mem_j)
-#            Extra.append(Mem_j)
-            print("Extra:", Extra)
-#            continue
-#            if Mem_j not in Extra:      # Если нет в списке лишних
-        if [Mem_j] not in Extra:
-            Parents_j = Relatives.get(Mem_j)    # Получил предкoв
-            print("Parents_j:", Parents_j)
-            if Parents_j == ["object"]:
-                print("Parents_j:", Parents_j)
+for i in range(Excepts):
+    Exc_i = Exc[i]
+    Exc_h = str(Exc_i[0])
+    Inspected.append(Exc_i)
+    print("Inspected:", Inspected)
+    print("i:", i, "Exc_i:", Exc_i, "Exc_h:", Exc_h)
+#    Exit = False
+#    while not Exit:
+    for j in range(N_Ways):
+#        Exit = False
+        Ways_j = Result[j]
+        print("j:", j, "Ways_j:", Ways_j)
+#        print("Ways_j[0]:", Ways_j[0])
+#        if Exc_h in Ways_j:
+        if Exc_h == Ways_j[0]:
+            print("Exc_h:", Exc_h, "Ways_j[0]:", Ways_j[0])
+#            if Exc_h not in Extra:
+#                Extra.append(Ways_j[0])
+            print(i, j, "Extra:", Extra)
+            continue
+        if Exc_h == Ways_j[-1]:
+            print("Ways_j[0]:", Ways_j[0])
+            if [Ways_j[0]] in Inspected:
+                print("Ways_j[0] in Inspected")
                 continue
-            Len_Par = len(Parents_j)        # Длина списка предков
-            print("j:", j, "Parents_j:", Parents_j, "Len_Par:", Len_Par)
-            for k in range(Len_Par):        # Цикл по предкам
-                P_k = Parents_j[k]
-                print("k:", k, "P_k:", P_k)
-                print("Exc_1:", Exc)
-#                    if [P_k] in Exc:              # Если предок в списке исключений
-                if [P_k] in Exc:
-                    print("Exc_2:", Exc)
-                    if Mem_j not in Extra:  # Исключить повторную запись
-#                        Extra.append(Mem_j)     # Запись в список лишних
-                        print("Extra:", Extra)
-                    print("1. Extra:", Extra)
-                    continue
-#                    if [P_k] not in Extra:      # Если предка нет в списке исключений
-                if [P_k] not in Extra:
-#                    if Mem_j not in Exc:  # Исключить повторную запись
-                    Extra.append(Mem_j)     # Запись в список лишних
-                    print("2. Extra:", Extra)
-                print("Extra:", Extra)
+            if Ways_j[0] not in Extra:
+                Extra.append(Ways_j[0])
+                print(i, j, "Extra:", Extra)
+#            Exit = True
+                continue
+#        if Exc_i not in Ways_j:
+#            j = j + 1
+#            continue
+#    if Exit == True:
+#        continue
+#
 Length = len(Extra)             # Длина списка лишних исключений
 print("Number of Exceptions:", Length)
 print("Extra Exceptions:")      # Лишние исключения

@@ -10,5 +10,5 @@ ArithmeticError
 FileNotFoundError
 
 Result: FileNotFoundError
-My both replies: ZeroDivisionError FileNotFoundError
+My Result: FileNotFoundError
 

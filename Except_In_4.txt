@@ -20,7 +20,6 @@ c
 j
 g
 e
-
+             ?
 Ответ: h f k c j g
-My reply (Except_Inher_1) : d c h g f e k j
-My reply (Except_Inher)   : d c j h g f e k
+My reply: h f k j g e

@@ -25,5 +25,4 @@ a
 f
 
 Ответ: m e g f
-My reply (Except_Inher.py)   : y z i g d c f m n e
-My reply (Except_Inher_1.py) : y z i g d c e m n f
+My reply: e g f 
