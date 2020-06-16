@@ -25,4 +25,5 @@ a
 f
 
 Ответ: m e g f
-My reply: e g f 
+My reply: e g f
+Проверить отсутствие m в ответе 

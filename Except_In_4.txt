@@ -20,6 +20,8 @@ c
 j
 g
 e
-             ?
-Ответ: h f k c j g
-My reply: h f k j g e
+
+Ответ:    h f k c j g
+My reply: h f k j g e c
+                      ?
+Разобраться с порядком в ответе (не соответствует порядку ввода)
