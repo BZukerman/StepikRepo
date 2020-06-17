@@ -131,12 +131,12 @@ for i in range(Excepts):
             print("Exc_h:", Exc_h, "Ways_j[0]:", Ways_j[0])
             print(i, j, "Extra:", Extra)
             continue
-        if Exc_h == Ways_j[-1]:
+        if Exc_h == Ways_j[-1]:     # ?
             print("Ways_j[0]:", Ways_j[0])
             if [Ways_j[0]] in Inspected:
                 print("Ways_j[0] in Inspected")
                 continue
-            if Ways_j[0] not in Extra:
+            if Ways_j[0] not in Extra:  # проверяем Exc_h, записываем Ways_j[0]!
                 Extra.append(Ways_j[0])
                 print(i, j, "Extra:", Extra)
                 continue
