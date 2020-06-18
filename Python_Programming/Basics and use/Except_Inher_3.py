@@ -19,7 +19,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_1.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_2.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())   # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -124,24 +124,9 @@ for i in range(Excepts):
     Inspected.append(Exc_i)
     print("Inspected:", Inspected)
     print("i:", i, "Exc_i:", Exc_i, "Exc_h:", Exc_h)
-    for j in range(N_Ways):
-        Ways_j = Result[j]
-        print("j:", j, "Ways_j:", Ways_j)
-        if Exc_h == Ways_j[0]:
-            print("Exc_h:", Exc_h, "Ways_j[0]:", Ways_j[0])
-            print(i, j, "Extra:", Extra)
-            continue
-        if Exc_h == Ways_j[-1]:     # ?
-            print("Ways_j[0]:", Ways_j[0])
-            if [Ways_j[0]] in Inspected:
-                print("Ways_j[0] in Inspected")
-                continue
-            if Ways_j[0] not in Extra:  # проверяем Exc_h, записываем Ways_j[0]!
-#            if Exc_h not in Exc:
-                Extra.append(Ways_j[0])
-#                Extra[i] = Ways_j[0]
-                print(i, j, "Extra:", Extra)
-                continue
+
+
+
 # Печать избыточных исключений
 Length = len(Extra)             # Длина списка лишних исключений
 print("Number of Exceptions:", Length)
