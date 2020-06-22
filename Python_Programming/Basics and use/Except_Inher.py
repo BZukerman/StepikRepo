@@ -97,7 +97,8 @@ for k in range(N_Keys):
 # Поиск путей от младших детей к старшим предкам
 Req_i = []
 Result = []
-Extra = ["" for e in range(Excepts)]    # Массив избыточных исключений
+Extra = []
+# Extra = ["" for e in range(Excepts)]    # Массив избыточных исключений
 for i in range(Excepts):        # Цикл по исключениям
     Kid_i = (Exc[i])[0]         # Потомок
     for j in range(Excepts):    # Цикл по исключениям
@@ -118,34 +119,50 @@ print("Result Ways:", Result)
 Exc_i = []
 Ways_j = []
 Inspected = []
+Checked = []
 for i in range(Excepts):
     Exc_i = Exc[i]
     Exc_h = str(Exc_i[0])
-    Inspected.append(Exc_i)
-    print("Inspected:", Inspected)
+#    Inspected.append(Exc_i)
+#    print("Inspected:", Inspected)
     print("i:", i, "Exc_i:", Exc_i, "Exc_h:", Exc_h)
     for j in range(N_Ways):
         Ways_j = Result[j]
         print("j:", j, "Ways_j:", Ways_j)
-        if Exc_h == Ways_j[0]:
-            print("Exc_h:", Exc_h, "Ways_j[0]:", Ways_j[0])
-            print(i, j, "Extra:", Extra)
-            continue
-        if Exc_h == Ways_j[-1]:     # ?
-            print("Ways_j[0]:", Ways_j[0])
-            if [Ways_j[0]] in Inspected:
-                print("Ways_j[0] in Inspected")
-                continue
-            if Ways_j[0] not in Extra:  # проверяем Exc_h, записываем Ways_j[0]!
+#        if Exc_h == Ways_j[0]:
+#            print("Exc_h:", Exc_h, "Ways_j[0]:", Ways_j[0])
+#            print(i, j, "Extra:", Extra)
+#            continue
+#        Kid_j = Ways_j[0]
+        Par_j = Ways_j[-1]
+        print("Par_j:", Par_j)
+#        Par_j = Ways_j[-1]
+#        if Exc_h == Ways_j[-1]:     # ?
+#            print("Ways_j[0]:", Ways_j[0])
+#            if [Ways_j[0]] in Inspected:
+#                print("Ways_j[0] in Inspected")
+#                continue
+        if Exc_i == Par_j:
+            print(i, j, "Checked:", Checked)
+#            break
+        if Exc_i != Par_j:
+            if Exc_i not in Checked:
+                Checked.append(Exc_i)
+                print(i, j, "Checked:", Checked)
+        continue
+#        print(i, j, "Checked:", Checked)
+#                continue
+#            if Ways_j[0] not in Extra:  # проверяем Exc_h, записываем Ways_j[0]!
 #            if Exc_h not in Exc:
-                Extra.append(Ways_j[0])
+#                Extra.append(Ways_j[0])
 #                Extra[i] = Ways_j[0]
-                print(i, j, "Extra:", Extra)
-                continue
+#                print(i, j, "Extra:", Extra)
+#                continue
 # Печать избыточных исключений
-Length = len(Extra)             # Длина списка лишних исключений
-print("Number of Exceptions:", Length)
-print("Extra Exceptions:")      # Лишние исключения
+Length = len(Checked)             # Длина списка лишних исключений
+print("Number of Checked:", Length)
+print("Checked:")      # Лишние исключения
 for i in range(Length):         # Печать пострчно
-    if Extra[i] != "":
-        print(Extra[i])
+#    if Checked[i] != "":
+    print(Checked[i])
+print("Checked:", Checked)
