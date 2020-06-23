@@ -117,15 +117,23 @@ print("N_Ways:", N_Ways)
 print("Result Ways:", Result)
 # Поиск избыточных исключений
 Exc_i = []
+Pars_i = []
 Ways_j = []
 Inspected = []
 Checked = []
 for i in range(Excepts):
     Exc_i = Exc[i]
     Exc_h = str(Exc_i[0])
+    Pars_i = Relatives.get(Exc_h)
+    print("Exc_i:", Exc_i, "Pars_i:", Pars_i)
+    if Exc_i not in Pars_i:
+        Checked.append(Exc_i)
+        print("Checked:", Checked)
+        continue
 #    Inspected.append(Exc_i)
 #    print("Inspected:", Inspected)
     print("i:", i, "Exc_i:", Exc_i, "Exc_h:", Exc_h)
+    print("Pars_j:", Pars_i)
     for j in range(N_Ways):
         Ways_j = Result[j]
         print("j:", j, "Ways_j:", Ways_j)
@@ -133,7 +141,7 @@ for i in range(Excepts):
 #            print("Exc_h:", Exc_h, "Ways_j[0]:", Ways_j[0])
 #            print(i, j, "Extra:", Extra)
 #            continue
-#        Kid_j = Ways_j[0]
+        Kid_j = Ways_j[0]
         Par_j = Ways_j[-1]
         print("Par_j:", Par_j)
 #        Par_j = Ways_j[-1]

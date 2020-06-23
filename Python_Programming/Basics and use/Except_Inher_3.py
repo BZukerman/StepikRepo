@@ -19,7 +19,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_2.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_31.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())   # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -118,19 +118,40 @@ print("Result Ways:", Result)
 Exc_i = []
 Ways_j = []
 Inspected = []
+Pars_i = []
 for i in range(Excepts):
+    Flag_i = []
     Exc_i = Exc[i]
     Exc_h = str(Exc_i[0])
-    Inspected.append(Exc_i)
-    print("Inspected:", Inspected)
+#    print("Inspected:", Inspected)
     print("i:", i, "Exc_i:", Exc_i, "Exc_h:", Exc_h)
-
-
+    Pars_i = Relatives.get(Exc_h)
+    Len_Par_i = len(Pars_i)
+    print("Exc_i:", Exc_i, "Pars_i:", Pars_i)
+    for j in range(Len_Par_i):
+        Par_ij = Pars_i[j]
+        print(i, j, "Par_ij:", Par_ij)
+        print("Exc:", Exc)
+        if Par_ij in Exc: # Inspected:
+            print("Exc:", Exc)
+            print("0. Inspected:", Inspected)
+            continue
+        if Par_ij not in Exc: # Inspected:
+            print("not in Inspected")
+            Flag_i.append(1)
+            print("Flag_i:", Flag_i)
+#            continue
+        if sum(Flag_i) == Len_Par_i:
+            Inspected.append(Exc_h)
+            print("Sum:", sum(Flag_i))
+            print("1. Inspected:", Inspected)
+    print("3. Inspected:", Inspected)
+# Вычисляем избыточные исключения как (Exc - Inspected)
+# - вычеркиваем совпадающие в обоих списках элементы
 
 # Печать избыточных исключений
 Length = len(Extra)             # Длина списка лишних исключений
 print("Number of Exceptions:", Length)
 print("Extra Exceptions:")      # Лишние исключения
 for i in range(Length):         # Печать пострчно
-    if Extra[i] != "":
-        print(Extra[i])
+    print(Inspected[i])
