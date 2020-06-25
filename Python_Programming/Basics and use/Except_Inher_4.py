@@ -1,5 +1,6 @@
 # Источник для функции find_path:
 # http://www.infocity.kiev.ua/prog/python/content/pytonesse_3.shtml
+# Алгоритм Alexey Petukhov
 #
 def find_path(graph, start, end, path=[]):  # Функция заимствована
     path = path + [start]
@@ -19,7 +20,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_31.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_1.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())   # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -97,7 +98,8 @@ for k in range(N_Keys):
 # Поиск путей от младших детей к старшим предкам
 Req_i = []
 Result = []
-Extra = ["" for e in range(Excepts)]    # Массив избыточных исключений
+# Extra = ["" for e in range(Excepts)]    # Массив избыточных исключений
+Extra = []
 for i in range(Excepts):        # Цикл по исключениям
     Kid_i = (Exc[i])[0]         # Потомок
     for j in range(Excepts):    # Цикл по исключениям
@@ -123,37 +125,24 @@ for i in range(Excepts):
     Flag_i = []
     Exc_i = Exc[i]
     Exc_h = str(Exc_i[0])
-#    print("Inspected:", Inspected)
+    Inspected.append(Exc_h)
+    print("Inspected:", Inspected)
     print("i:", i, "Exc_i:", Exc_i, "Exc_h:", Exc_h)
     Pars_i = Relatives.get(Exc_h)
     Len_Par_i = len(Pars_i)
     print("Exc_i:", Exc_i, "Pars_i:", Pars_i)
-    if Exc_i in Inspected:
-        continue
-    for j in range(Len_Par_i):
-        Par_ij = Pars_i[j]
-        print(i, j, "Par_ij:", Par_ij)
-        print("Exc:", Exc)
-        if Par_ij in Exc: # Inspected:
-            print("Exc:", Exc)
-            print("0. Inspected:", Inspected)
-            continue
-        if Par_ij not in Exc: # Inspected:
-            print("not in Inspected")
-            Flag_i.append(1)
-            print("Flag_i:", Flag_i)
-#            continue
-        if sum(Flag_i) == Len_Par_i:
-            Inspected.append(Exc_h)
-            print("Sum:", sum(Flag_i))
-            print("1. Inspected:", Inspected)
-    print("3. Inspected:", Inspected)
-# Вычисляем избыточные исключения как (Exc - Inspected)
-# - вычеркиваем совпадающие в обоих списках элементы
+    Set_Insp = set(Inspected)
+    Set_Pars = set(Pars_i)      # Pars_i
+    print("Set_Insp:", Set_Insp, "Set_Pars:", Set_Pars)
+    if abs(len(Set_Pars & Set_Insp)) > 0:
+        print(len(Set_Insp), len(Set_Pars))
+        Extra.append(Exc_i)
+        print("Extra:", Extra)
+
 
 # Печать избыточных исключений
 Length = len(Extra)             # Длина списка лишних исключений
 print("Number of Exceptions:", Length)
 print("Extra Exceptions:")      # Лишние исключения
 for i in range(Length):         # Печать пострчно
-    print(Inspected[i])
+    print(Extra[i])
