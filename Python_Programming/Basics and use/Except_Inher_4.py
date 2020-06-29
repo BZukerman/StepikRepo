@@ -95,15 +95,15 @@ for k in range(N_Keys):
     Key_k = Keys[k]
     Val_k = Relatives.get(Key_k)
 #    print(Key_k, ":", Val_k)
-# Поиск путей от младших детей к старшим предкам
+# Поиск путей от заданных младших детей ко всем старшим предкам (ключам)
 Req_i = []
 Result = []
 # Extra = ["" for e in range(Excepts)]    # Массив избыточных исключений
 Extra = []
-for i in range(Excepts):        # Цикл по исключениям
+for i in range(Excepts):        # Цикл по заданным исключениям
     Kid_i = (Exc[i])[0]         # Потомок
-    for j in range(Excepts):    # Цикл по исключениям
-        Father_j = (Exc[j])[0]          # Предок Exc[j]
+    for j in range(N_Keys):     # Цикл по всем ключам (было Excepts)
+        Father_j = Keys[j]      # Предок Keys[j] ( было Exc[j])[0]
 #    print(Req_i, Father_i, Kid_i, Parents_i)
         if Father_j == Kid_i:           # Странное свойство Python
             continue
@@ -118,28 +118,42 @@ print("N_Ways:", N_Ways)
 print("Result Ways:", Result)
 # Поиск избыточных исключений
 Exc_i = []
-Ways_j = []
+Way_j = []
+Flag = False
 Inspected = []
-Pars_i = []
 for i in range(Excepts):
-    Flag_i = []
+    Flag = False
     Exc_i = Exc[i]
     Exc_h = str(Exc_i[0])
+    if Exc_h in Inspected:
+        Flag = True
+    print("i:", i, "Exc_h:", Exc_h)
+    if i == 0:
+        Inspected.append(Exc_h)
+#        print("i:", i, "Inspected:", Inspected)
+        continue
+    Pars_j = []
     Inspected.append(Exc_h)
-    print("Inspected:", Inspected)
-    print("i:", i, "Exc_i:", Exc_i, "Exc_h:", Exc_h)
-    Pars_i = Relatives.get(Exc_h)
-    Len_Par_i = len(Pars_i)
-    print("Exc_i:", Exc_i, "Pars_i:", Pars_i)
-    Set_Insp = set(Inspected)
-    Set_Pars = set(Pars_i)      # Pars_i
-    print("Set_Insp:", Set_Insp, "Set_Pars:", Set_Pars)
-    if abs(len(Set_Pars & Set_Insp)) > 0:
-        print(len(Set_Insp), len(Set_Pars))
-        Extra.append(Exc_i)
-        print("Extra:", Extra)
-
-
+    for j in range(N_Ways):
+        Way_j = Result[j]
+#        print("Way_j:", Way_j)
+        if Way_j[0] == Exc_h:
+            Pars_j = Pars_j + Way_j[1:]
+#    print("Pars_j:", Pars_j)
+    Pars_j_Set = set(Pars_j)
+    print("Pars_j_Set:", Pars_j_Set)
+    Compar = set(Inspected) & set(Pars_j_Set)
+    print("Compar:", Compar, "Inspected:", Inspected)
+    if Flag == True:
+        Extra.append(Exc_h)
+        print(i, Flag, "Extra:", Extra)
+        continue
+    if len(Compar) == 0:
+        print("i:", i, "Extra:", Extra)
+        continue
+    else:
+        Extra.append(Exc_h)
+        print("i:", i, "Extra:", Extra)
 # Печать избыточных исключений
 Length = len(Extra)             # Длина списка лишних исключений
 print("Number of Exceptions:", Length)
