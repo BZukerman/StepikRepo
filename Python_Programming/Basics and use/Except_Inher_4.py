@@ -20,7 +20,7 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-Inf = open('E:\Tsuker\StepikRepo\Except_In_2.txt', 'r')    # Открытие файла ввода
+Inf = open('E:\Tsuker\StepikRepo\Except_In_5.txt', 'r')    # Открытие файла ввода
 Classes = int(Inf.readline())   # From file
 # Classes = int(input())      # Число описаний классов
 print("Classes:", Classes)
@@ -96,16 +96,15 @@ for k in range(N_Keys):
     Val_k = Relatives.get(Key_k)
 #    print(Key_k, ":", Val_k)
 # Поиск путей от заданных младших детей ко всем старшим предкам (ключам)
-Req_i = []
+Req_i = []                      # Вспомогательные списки
 Result = []
-# Extra = ["" for e in range(Excepts)]    # Массив избыточных исключений
-Extra = []
+Extra = []                      # Пустой список результатов
 for i in range(Excepts):        # Цикл по заданным исключениям
     Kid_i = (Exc[i])[0]         # Потомок
-    for j in range(N_Keys):     # Цикл по всем ключам (было Excepts)
-        Father_j = Keys[j]      # Предок Keys[j] ( было Exc[j])[0]
+    for j in range(N_Keys):     # Цикл по всем ключам
+        Father_j = Keys[j]      # Предок Keys[j]
 #    print(Req_i, Father_i, Kid_i, Parents_i)
-        if Father_j == Kid_i:           # Странное свойство Python
+        if Father_j == Kid_i:   # Странное свойство Python
             continue
 #        print("Kid_i:", Kid_i, "Father_j:", Father_j)
         Ways = find_path(Relatives, Kid_i, Father_j)  # Вызов функции
@@ -113,50 +112,53 @@ for i in range(Excepts):        # Цикл по заданным исключе�
             Result.append(Ways)     # Пути как списки
         else:                       # Путь отсутствует
             continue
-N_Ways = len(Result)
-print("N_Ways:", N_Ways)
-print("Result Ways:", Result)
+N_Ways = len(Result)                # Количество путей
+print("N_Ways:", N_Ways)            # Печать количества путей
+print("Result Ways:", Result)       # Печать путей
 # Поиск избыточных исключений
-Exc_i = []
-Way_j = []
-Flag = False
-Inspected = []
-for i in range(Excepts):
-    Flag = False
-    Exc_i = Exc[i]
+Exc_i = []                          # Текущее исключение
+Way_j = []                          # Текущий путь
+Inspected = []                      # Для накопления исключений
+for i in range(Excepts):            # Цикл по заданным исключениям
+    Flag = False                    # Вспомогательный флаг для проверки повторения
+    Exc_i = Exc[i]                  # Младший ребенок в текущем пути
     Exc_h = str(Exc_i[0])
-    if Exc_h in Inspected:
+    if Exc_h in Inspected:          # Если уже есть в списке проверок
         Flag = True
-    print("i:", i, "Exc_h:", Exc_h)
-    if i == 0:
-        Inspected.append(Exc_h)
+#    print("i:", i, "Exc_h:", Exc_h)
+    if i == 0:                      # Пропускаем первую проверку
+        Inspected.append(Exc_h)     # Запись в текущий список проверок
 #        print("i:", i, "Inspected:", Inspected)
         continue
-    Pars_j = []
-    Inspected.append(Exc_h)
-    for j in range(N_Ways):
-        Way_j = Result[j]
+    Pars_j = []                     # Пустой список родителей
+    Inspected.append(Exc_h)         # Текущий список для проверки
+    for j in range(N_Ways):         # Цикл по путям
+        Way_j = Result[j]           # Текущий путь для пополнения
 #        print("Way_j:", Way_j)
-        if Way_j[0] == Exc_h:
-            Pars_j = Pars_j + Way_j[1:]
+        if Way_j[0] == Exc_h:       # Если ребенок - это проверяемое исключение
+            Pars_j = Pars_j + Way_j[1:]     # Пополнение списка предков
 #    print("Pars_j:", Pars_j)
-    Pars_j_Set = set(Pars_j)
-    print("Pars_j_Set:", Pars_j_Set)
-    Compar = set(Inspected) & set(Pars_j_Set)
-    print("Compar:", Compar, "Inspected:", Inspected)
-    if Flag == True:
-        Extra.append(Exc_h)
-        print(i, Flag, "Extra:", Extra)
+    Pars_j_Set = set(Pars_j)        # Исключение повторяющихся элементов
+#    print("Pars_j_Set:", Pars_j_Set)
+    Compar = set(Inspected) & set(Pars_j_Set)   # Есть ли общие элементы?
+#    print("Compar:", Compar, "Inspected:", Inspected)
+#    print("Flag:", Flag, "Exc_h:", Exc_h)
+#    print("Extra:", Extra)
+    if Flag == True:    # and (Exc_h not in Extra):
+        if Exc_h not in Extra:      # Если есть в списке проверок и нет в результате
+#            print("Exc_h:", Exc_h, "Extra:", Extra)
+            Extra.append(Exc_h)     # Запись в список результатов
+#        print(i, Flag, "Extra:", Extra)
         continue
-    if len(Compar) == 0:
-        print("i:", i, "Extra:", Extra)
+    if len(Compar) == 0:            # Нет общих элементов
+#        print("i:", i, "Extra:", Extra)
         continue
-    else:
+    else:                           # Есть общие элементы
         Extra.append(Exc_h)
-        print("i:", i, "Extra:", Extra)
+#        print("i:", i, "Extra:", Extra)
 # Печать избыточных исключений
 Length = len(Extra)             # Длина списка лишних исключений
 print("Number of Exceptions:", Length)
-print("Extra Exceptions:")      # Лишние исключения
-for i in range(Length):         # Печать пострчно
+print("Extra Exceptions:")      # Избыточные исключения
+for i in range(Length):         # Печать результатов построчно
     print(Extra[i])

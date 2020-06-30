@@ -9,6 +9,7 @@ OSError
 ArithmeticError
 FileNotFoundError
 
+Stepik Example
 Result: FileNotFoundError
 My Result: FileNotFoundError
 

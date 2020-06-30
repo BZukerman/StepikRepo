@@ -17,7 +17,7 @@ kk
 ll
 gg
 
-
+Сергей Афанасьев
 Result: kk ll gg
 My result: kk ll gg
 Сергей Афанасьев

@@ -1,0 +1,29 @@
+14
+a
+b : a
+c : a
+f : a
+d : c b
+g : d f
+i : g
+m : i
+n : i
+z : i
+e : m n
+y : z
+x : z
+w : e y x
+9
+f
+y
+m
+n
+g
+d
+m 
+e
+a
+
+Евгений Васильев
+Ответ: m e g f		(исходный порядок исключений, файл Except_In_2.txt )
+Ответ: y m n g e	(другой порядок исключений, файл Except_In_21.txt )
