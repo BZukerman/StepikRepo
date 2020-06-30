@@ -1,6 +1,8 @@
 # Источник для функции find_path:
 # http://www.infocity.kiev.ua/prog/python/content/pytonesse_3.shtml
 # Алгоритм Alexey Petukhov
+# Последний вариант, принятиый платформой Stepik
+# Реализован на основе алгоритма Alexey Petukhov
 #
 def find_path(graph, start, end, path=[]):  # Функция заимствована
     path = path + [start]
