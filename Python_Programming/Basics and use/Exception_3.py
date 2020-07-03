@@ -12,7 +12,7 @@ while True:
         Name = input("Please enter your name: ")
         Greeting = greet(Name)
         print(Greeting)
-    except ValueError():
+    except ValueError:
         print("Please try again!")
     else:
         break
