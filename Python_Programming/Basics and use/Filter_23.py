@@ -1,13 +1,28 @@
 #
 class multifilter:
     def judge_half(pos, neg):
-# допускает элемент, если его допускает хотя бы половина фукнций (pos >= neg)
+        # допускает элемент, если его допускает хотя бы половина фукнций (pos >= neg)
+        if pos >= neg:
+            value = self.D.get(self.iterable)
+            value.append(self.funcs)
+            pair = {self.D: value}
+            self.D.update(pair)
 
     def judge_any(pos, neg):
         # допускает элемент, если его допускает хотя бы одна функция (pos >= 1)
+        if pos => 1:
+            value = self.D.get(self.iterable)
+            value.append(self.funcs)
+            pair = {self.D: value}
+            self.D.update(pair)
 
     def judge_all(pos, neg):
         # допускает элемент, если его допускают все функции (neg == 0)
+        if neg == 0:
+            value = self.D.get(self.iterable)
+            value.append(self.funcs)
+            pair = {self.D: value}
+            self.D.update(pair)
 
     def __init__(self, iterable, *funcs, judge=judge_any):
         # iterable - исходная последовательность
