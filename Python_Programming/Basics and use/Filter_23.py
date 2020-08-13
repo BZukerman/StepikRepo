@@ -2,27 +2,15 @@
 class multifilter:
     def judge_half(pos, neg):
         # допускает элемент, если его допускает хотя бы половина фукнций (pos >= neg)
-        if pos >= neg:
-            value = self.D.get(self.iterable)
-            value.append(self.funcs)
-            pair = {self.D: value}
-            self.D.update(pair)
+        return pos >= neg
 
     def judge_any(pos, neg):
         # допускает элемент, если его допускает хотя бы одна функция (pos >= 1)
-        if pos => 1:
-            value = self.D.get(self.iterable)
-            value.append(self.funcs)
-            pair = {self.D: value}
-            self.D.update(pair)
+        return pos >= 1
 
     def judge_all(pos, neg):
         # допускает элемент, если его допускают все функции (neg == 0)
-        if neg == 0:
-            value = self.D.get(self.iterable)
-            value.append(self.funcs)
-            pair = {self.D: value}
-            self.D.update(pair)
+        return neg == 0
 
     def __init__(self, iterable, *funcs, judge=judge_any):
         # iterable - исходная последовательность
@@ -34,22 +22,19 @@ class multifilter:
 
     def __iter__(self):
         # возвращает итератор по результирующей последовательности
-        for i in range(self.iterable):
-            Sum_p = 0
-            Sum_n = 0
-            pos = 0
+        for i in self.iterable:     # Цикл по последовательности
+            pos = 0                 # Обнуление счетчиков
             neg = 0
-            for f in self.funcs:
-                Res_i = f(i)
-                if Res_i == True:
+            for f in self.funcs:    # Цикл по допускающим функциям
+                Res_i = f(i)        # Получение результата
+                if Res_i == True:   # Суммирование результатов
                     pos = pos + 1
                 else:
                     neg = neg + 1
-            Sum_p = pos
-            Sum_n = neg
-
-
-
+#            print("i:", i, "pos:", pos)
+#            print("i:", i, "neg:", neg)
+            if self.judge(pos, neg) == True:    # Возврат ответа
+                yield i
 
 def mul2(x):
     return x % 2 == 0
@@ -61,4 +46,10 @@ def mul5(x):
     return x % 5 == 0
 
 a = [i for i in range(31)] # [0, 1, 2, ... , 30]
-print(a)
+# print(a)
+#
+print(list(multifilter(a, mul2, mul3, mul5)))
+#
+print(list(multifilter(a, mul2, mul3, mul5, judge=multifilter.judge_half)))
+#
+print(list(multifilter(a, mul2, mul3, mul5, judge=multifilter.judge_all)))
