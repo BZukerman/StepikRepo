@@ -6,10 +6,12 @@ for i in range(3, n + 1, 2):
 	for j in lst:
 		if j * j - 1 >= i:
 			lst.append(i)
-			print("1", lst)
+			print("1", i, j, lst)
 			break
 		if (i % j == 0):
+			print("2", i, j)
 			break
 	else:
 		lst.append(i)
+		print("3", i, j)
 print(lst)

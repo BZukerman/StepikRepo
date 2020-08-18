@@ -1,9 +1,6 @@
 #
-# import itertools
-#
 def primes():
     lst = [2]
-#    print("0", lst)
     i = 1
     while True:
         i = i + 2
@@ -13,15 +10,19 @@ def primes():
         for j in lst:
             if j * j - 1 > i:
                 lst.append(i)
-                print("1", i, lst)
+                print("1", i, j, lst)
+                yield i
+                print("Break 1")
                 break
             if (i % j == 0):
-                print("2", i, lst)
+                print("2", i, j, lst)
+                print("Break 2")
                 break
         else:
-#            print(i)
+            print("3", i)
             lst.append(i)
             yield i
+#    return lst
 #
 import itertools
 print(list(itertools.takewhile(lambda x : x <= 21, primes())))
