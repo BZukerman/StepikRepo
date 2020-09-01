@@ -38,5 +38,5 @@ f = open("E:\Tsuker\StepikRepo\Text_wr_utf.txt", "w", encoding = "utf-8")
 for i in Res_Sort:                  # Цикл по строкам
     Slice = str(i[Pos + 1:]) + "\n" # Срез строки, начиная после слеша
 #    print(Slice)
-    f.write(Slice)                  # Запись строки в яайл
+    f.write(Slice)                  # Запись строки в файл
 f.close                             # Закрытие файла
