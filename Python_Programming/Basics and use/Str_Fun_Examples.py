@@ -105,5 +105,34 @@ from random import random
 x = random()
 print(x)			# 0.8492685238280031
 print("{:.3}".format(x))	# 0.849
-
+#
+s = "ababa"
+a = "a"
+b = "b"
+s1 = s.replace(a, b)
+print(s1)	# bbbbb
+print()
+s = "abab"
+a = "ab"
+b = "ba"
+s1 = s.replace(a, b)
+print(s1)	# baba
+print()
+s = "ababa"
+a = "c"
+print(a in s)	# False
+print()
+s = "ababa"
+a = "a"
+b = "ab"
+s1 = s.replace(a, b)
+print(s1)	# abbabbab
+Cond1 = a in b
+print(Cond1)	# True
+Cond2 = a != b
+print(Cond2)	# True
+Cond3 = a > b
+print(Cond3)	# False
+Cond4 = b in a
+print(Cond4)	#False
 
