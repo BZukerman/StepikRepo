@@ -1,30 +1,43 @@
-# ababa a b
+# Вашей программе на вход подаются три строки s, a, b, состоящие из строчных
+# латинских букв. За одну операцию вы можете заменить все вхождения строки a
+# в строку s на строку b.
+# Выведите одно число – минимальное число операций, после применения которых
+# в строке s не останется вхождений строки a, или Impossible, если операций
+# потребуется более 1000.
 #
-s, a, b = (input() for i in range(3))
-# print("s:", s)
-# print("a:", a)
-# print("b:", b)
-Exit = False
-Count = 0
-New = s
-# print("New:", New)
-if a == b and a in s:
-#    print("Count:", Count)
-    print("Impossible")
+s, a, b = (input() for i in range(3))       # Ввод исходных данных
+#
+Exit = False                # Флаг выхода из цикла
+Count = 0                   # Счетчик циклов
+New = s                     # Вспомогательный (текущий) список
+#
+if a in b and a < b:        # Проверка на разбухание списка при замене
+#    print("6. Count:", Count)
+    print("6. Impossible")
+    exit()                  # Завершение программы
+#
+if a == b and a in s:       # Каждая подстрока содержится в исходной
+#    print("1. Count:", Count)
+    print("1. Impossible")
 #    quit()
-    exit()
-while not Exit:
-    if a in New:
-        New = s.replace(a, b)
-#        print("New:", New)
-        Count = Count + 1
-#        print("Count:", Count)
-        if Count >= 1000:
-            print("Count:", Count)
-            print("Impossible")
-            break
-    else:
-        print("Count:", Count)
-        Exit = True
-
-
+    exit()                  # Завершение программы
+#
+if a == b and a not in s:   # Обе подстроки не содержатся в исходной
+#    print("5. Count:", Count)
+    print("5. Impossible")
+    exit()                  # Завершение программы
+#
+while not Exit:                     # Бесконечный цикл
+    if a in New:                    # Заменяемая подстрока есть в текущем списке
+        New = New.replace(a, b)     # Замена подстроки a на b
+#        print("2. New:", New)
+        Count = Count + 1           # Приращение счетчика
+#        print("2", Count)
+        if Count >= 1000:           # Проверка превышения ограничения циклов
+#            print("3. Count:", Count)
+            print("3. Impossible")
+            break                   # Выход из цикла
+    else:                           # Заменяемой подстроки нет в текущем списке
+#        print("4. New:", New)
+        print("4", Count)
+        Exit = True                 # Флаг выхода из цикла
