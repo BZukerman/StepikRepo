@@ -3,6 +3,7 @@
 #
 import sys
 import re
+#
 pattern = r".*cat.*cat.*"   # Шаблон: любые символы в начале, середине и в конце
 #
 for line in sys.stdin:      # Цикл ввода
