@@ -33,7 +33,7 @@ for line in sys.stdin:      # Цикл ввода
     if RH2 != []:               # Есть символы [0 - 1]
         Result = int(line, base = 2)
 #        print(Result)
-        Rest = Result % 3
+        Rest = Result % 3       # Остаток от деления
         if Rest == 0:
             print("Число,кратное 3:", Result)
             print(line)
