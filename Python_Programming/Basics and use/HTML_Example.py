@@ -1,14 +1,8 @@
 import requests
 import re
 #
-# res = requests.get("https://docs.python.org/3.5/")
-# res = requests.get("https://mail.ru/")
-# print("Status_Code:", res.status_code)
-# print("Content-Type:", res.headers["Content-Type"])
-# print("Content:", res.content)
-# print("Text:", res.text)
-#
 URL0 = "https://stepic.org/media/attachments/lesson/24472/sample0.html"
+print("URL0:", URL0)
 Res = requests.get(URL0)
 print("Status_Code:", Res.status_code)
 # print("Content0:", Res.content)
@@ -16,12 +10,14 @@ Text0 = Res.text
 print("Text:", Text0)
 #
 URL1 = "https://stepic.org/media/attachments/lesson/24472/sample1.html"
+print("URL1:", URL1)
 Res = requests.get(URL1)
 print("Status_Code:", Res.status_code)
 Text1 = Res.text
 print("Text:", Text1)
 #
-URL2 = "https://stepic.org/media/attachments/lesson/24472/sample1.html"
+URL2 = "https://stepic.org/media/attachments/lesson/24472/sample2.html"
+print("URL2:", URL2)
 Res = requests.get(URL2)
 print("Status_Code:", Res.status_code)
 Text2 = Res.text
