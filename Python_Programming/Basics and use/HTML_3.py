@@ -24,7 +24,10 @@ def calc(lin, URL, Tailh):      # Повторяющиеся операции
 Pattern2 = r"sample\d.html"     # Паттерн для поиска ресурса
 Pattern3 = r"https.*.html"      # Паттерн для поиска пути
 #
-Ways = []
+Ways1 = []
+Ways2 = []
+Targets1 = []
+#
 line = input()                  # Ввод URL1
 URL1 = line.rstrip()            # Удаление пробелов в конце строки
 Tail1 = re.findall(Pattern2, URL1)  # Выделение ресурса (d.html)
@@ -32,8 +35,8 @@ calc(line, URL1, Tail1)         # Работа функции
 Resource1 = Resource            # Получение глобальной переменной
 Text1 = Text                    # Получение глобальной переменной
 Way1 = re.findall(Pattern3, Text1)  # Полный путь к ресурсу
-Ways.extend(Way1)               # Накопление путей в массив
-print("Ways:", Ways)
+Ways1.extend(Way1)               # Накопление путей в массив
+print("Ways1:", Ways1)
 #
 line = input()                  # Ввод URL1
 URL2 = line.rstrip()            # Удаление пробелов в конце строки
@@ -42,9 +45,21 @@ calc(line, URL2, Tail2)         # Работа функции
 Resource2 = Resource            # Получение глобальной переменной
 Text2 = Text                    # Получение глобальной переменной
 Way2 = re.findall(Pattern3, Text2)  # Полный путь к ресурсу
-Ways.extend(Way2)                   # Накопление путей в массив
-print("Ways:", Ways)
+Ways2.extend(Way2)                   # Накопление путей в массив
+print("Ways2:", Ways2)
 #
+Length1 = len(Ways1)
+for i in range(Length1):
+    Res1i = requests.get(Ways1)
+    print("Res1i:", Res1i)
+    SCi = Res1i.status_code
+    if SCi == 200:
+        Targets1.extend(Res1i)
+print("Length1:", Length1)
+print("Targets1:", Targets1)
+
+quit()
+
 if Resource1 == Tail2 and Resource2 == Tail2:
     print("Yes")
     quit()
@@ -57,7 +72,7 @@ if Resource1 != Tail2:          # Если ссылка ведет на втор
     Resourceh = Resource        # Получение глобальной переменной
     Texth = Text                # Получение глобальной переменной
     Wayh = re.findall(Pattern3, Texth)  # Полный путь к ресурсу
-    Ways.extend(Wayh)                   # Накопление путей в массив
+    Waysh.extend(Wayhh)                   # Накопление путей в массив
     print("Ways:", Ways)
 #
     if Resourceh == Tail2:      # Если ссылка из 3-го URL ведет на второй
