@@ -17,6 +17,7 @@ def calc(lin, URL, Tailh):      # Повторяющиеся операции
         print("No")
         quit()
     Text = Res.text             # Выделение текстовой информации
+#    print("Text:", Text)
     Resource = re.findall(Pattern2, Text)   # Ресурс запроса
     return
 #

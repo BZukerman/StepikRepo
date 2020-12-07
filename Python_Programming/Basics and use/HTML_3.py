@@ -11,6 +11,7 @@ def calc(lin, URL, Tailh):      # Повторяющиеся операции
     global Resource, Text       # Глобальные переменые
 #
     Res = requests.get(URL)     # Запрос к URL
+#    print("Res:", Res)
     SC = Res.status_code        # Получить статус-код
     if SC == 404 or SC == 500:  # Ресурс не найден или ошибка на сервере
 #        print("Status_Code:", SC)
@@ -45,16 +46,24 @@ calc(line, URL2, Tail2)         # Работа функции
 Resource2 = Resource            # Получение глобальной переменной
 Text2 = Text                    # Получение глобальной переменной
 Way2 = re.findall(Pattern3, Text2)  # Полный путь к ресурсу
-Ways2.extend(Way2)                   # Накопление путей в массив
+Ways2.extend(Way2)              # Накопление путей в массив
 print("Ways2:", Ways2)
 #
 Length1 = len(Ways1)
+# print("Length1:", Length1)
 for i in range(Length1):
-    Res1i = requests.get(Ways1)
-    print("Res1i:", Res1i)
+    Res1i = requests.get(Ways1[i])
+    print("Res1i:", Res1i)      # ???
+#    Res1i = Req1i.text
+#    print("Res1i:", Res1i)
     SCi = Res1i.status_code
+    Text1i = Res1i.text
+    print("Text1i:", Text1i)
+    print("SCi:", SCi)
+    Resource1i = re.findall(Pattern2, Text1i)
+    linei = re.findall(Pattern3, Text1i)
     if SCi == 200:
-        Targets1.extend(Res1i)
+        Targets1.append(linei)
 print("Length1:", Length1)
 print("Targets1:", Targets1)
 
