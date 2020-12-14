@@ -7,65 +7,73 @@
 import re
 import requests
 #
-def calc(lin, URL, Tailh):      # Повторяющиеся операции
+def calc(lin, URL):             # Повторяющиеся операции
     global Resource, Text       # Глобальные переменые
 #
     Res = requests.get(URL)     # Запрос к URL
-#    print("Res:", Res)
+    print("Calc_Res:", Res)
     SC = Res.status_code        # Получить статус-код
     if SC == 404 or SC == 500:  # Ресурс не найден или ошибка на сервере
-#        print("Status_Code:", SC)
-        print("No")
+        print("Calc_Status_Code:", SC)
+        print("Calc_No")
         quit()
     Text = Res.text             # Выделение текстовой информации
-    Resource = re.findall(Pattern2, Text)   # Ресурс запроса
+    Resource = re.findall(Pattern1, Text)   # Ресурс запроса
     return
 #
-# Pattern1 = r"(<a href=.*)+"     # Паттерн для поиска тега - не используется
+Pattern1 = r"(<a.*? href=(.*))a>"     # Паттерн для поиска тега - не используется
 Pattern2 = r"sample\d.html"     # Паттерн для поиска ресурса
 Pattern3 = r"https.*.html"      # Паттерн для поиска пути
 #
-Ways1 = []
-Ways2 = []
-Targets1 = []
+WaysA = []
+WaysB = []
+TargetsA = []
 #
-line = input()                  # Ввод URL1
-URL1 = line.rstrip()            # Удаление пробелов в конце строки
-Tail1 = re.findall(Pattern2, URL1)  # Выделение ресурса (d.html)
-calc(line, URL1, Tail1)         # Работа функции
-Resource1 = Resource            # Получение глобальной переменной
-Text1 = Text                    # Получение глобальной переменной
-Way1 = re.findall(Pattern3, Text1)  # Полный путь к ресурсу
-Ways1.extend(Way1)               # Накопление путей в массив
-print("Ways1:", Ways1)
+line = input()                  # Ввод URLA
+URLA = line.rstrip()            # Удаление пробелов в конце строки
+# TailA = re.findall(Pattern2, URLA)  # Выделение ресурса (d.html)
+calc(line, URLA)                # Работа функции
+ResourceA = Resource            # Получение глобальной переменной
+TextA = Text                    # Получение глобальной переменной
+WayA = re.findall(Pattern3, TextA)  # Полный путь к ресурсу
+print("WayA:", WayA)
+WaysA.extend(WayA)               # Накопление путей в массив
+print("WaysA:", WaysA)
 #
-line = input()                  # Ввод URL1
-URL2 = line.rstrip()            # Удаление пробелов в конце строки
-Tail2 = re.findall(Pattern2, URL2)  # Выделение ресурса (d.html)
-calc(line, URL2, Tail2)         # Работа функции
-Resource2 = Resource            # Получение глобальной переменной
-Text2 = Text                    # Получение глобальной переменной
-Way2 = re.findall(Pattern3, Text2)  # Полный путь к ресурсу
-Ways2.extend(Way2)              # Накопление путей в массив
-print("Ways2:", Ways2)
+line = input()                  # Ввод URLB
+URLB = line.rstrip()            # Удаление пробелов в конце строки
+print("URLB:", URLB)
+#TailB = re.findall(Pattern2, URLB)  # Выделение ресурса (d.html)
+#calc(line, URLB)         # Работа функции
+#ResourceB = Resource            # Получение глобальной переменной
+TextB = Text                    # Получение глобальной переменной
+WayB = re.findall(Pattern3, TextB)  # Полный путь к ресурсу
+print("WayB:", WayB)
+#WaysB.extend(WayB)              # Накопление путей в массив
+#print("WaysB:", WaysB)
 #
-Length1 = len(Ways1)
-# print("Length1:", Length1)
-for i in range(Length1):
-    Res1i = requests.get(Ways1[i])
-    print("Res1i:", Res1i)      # ???
-#    Res1i = Req1i.text
+LengthA = len(WaysA)
+# print("LengthA:", LengthA)
+for i in range(LengthA):
+    ResAi = requests.get(WaysA[i])
+#    print("ResAi:", ResAi)
+#    ResAi = Req1i.text
 #    print("Res1i:", Res1i)
-    SCi = Res1i.status_code
-    Text1i = Res1i.text
-    print("Text1i:", Text1i)
+    SCi = ResAi.status_code
+    TextAi = ResAi.text
+    print("TextAi:", TextAi)
     print("SCi:", SCi)
-    Resource1i = re.findall(Pattern2, Text1i)
-    linei = re.findall(Pattern3, Text1i)
+    Resource1i = re.findall(Pattern2, TextAi)
+    linei = re.findall(Pattern3, TextAi)
     if SCi == 200:
-        Targets1.append(linei)
-print("Length1:", Length1)
-print("Targets1:", Targets1)
+        TargetsA.append(linei)
+print("LengthA:", LengthA)
+print("TargetsA:", TargetsA)
+#
+if URLB == TargetsA:        # ???
+    print("URLB in TargetsA")
+else:
+    print("URLB is not in TargetsA")
 
 quit()
 
