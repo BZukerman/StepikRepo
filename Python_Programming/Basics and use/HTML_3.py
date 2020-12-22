@@ -26,12 +26,14 @@ def calc(URL):                  # Повторяющиеся операции
 # Pattern1 = r"https:(.*)"       # Паттерн для поиска тега (r"(<a.*? href=(.*))a>")
 Pattern1 = r"<a href=\"(.*)\""
 # Pattern2 = r"sample\d.html"           # Паттерн для поиска ресурса (d.html)
-Pattern3 = r"https:(.*)"      # Паттерн для поиска пути r"https.*.html"
+#Pattern3 = r"https:(.*)"      # Паттерн для поиска пути r"https.*.html"
+Pattern3 = Pattern3 = r'/\/.*\"'
 #
 WaysA = []
 WaysB = []
 TargetsA = []
 Resource = []
+Resource2 = []
 TagsA = []
 SC_2 = []
 Flag = False
@@ -71,14 +73,25 @@ for i in range(LengthA):
 #    print("SC_2:", SC_2)
     WayAi = WaysA[i]        # ??? Resource_i ???
     print("WayAi:", WayAi)
+    print(len(WayAi))
+    PathAi = WayAi[0:-1]
+    print("PathAi:", PathAi)
+    Resourcei = ResourceA[i]
+    print("Resourcei:", Resourcei)
 #    TagAi = Tag
 #    print("TagAi:", TagAi)
-    calc(WayAi)
+    calc(Resourcei)
     SCi = SC
-    Resource2i = Resource
-    print("Resource2i:", Resource2i)
+#    Resource2i = Resource
+#    print("Resource2i:", Resource2i)
     TagAi = Tag
     print("TagAi:", TagAi)
+                            # Выделить путь из TagAi !
+    Way2i = re.findall(Pattern3, TagAi)     # https: убрать из WaysB
+    print("Way2i:", Way2i)
+    Way2i0 = Way2i[0]
+    Path2i0 = Way2i0[0:-1]
+    print("Path2i0:", Path2i0)
 #    ResAi = requests.get(TagAi)     # Не URL!!! (WayAi)
 #    ResAi = WaysA[i]
 #    print("ResAi:", ResAi)
@@ -92,12 +105,14 @@ for i in range(LengthA):
 #    linei = re.findall(Pattern3, TextAi)
 #    print("linei:", linei)
     if SCi == 200:
-        TargetsA.append(Resource2i)      # linei
+#        TargetsA.append(Way2i)      # ???
+#        TargetsA = Way2i
+        TargetA = Path2i0
         print("TargetsA:", TargetsA)
 #    else:
 #        Flag = False
 #        continue
-    if WaysB in TargetsA:
+    if WaysB in Path2i0:   # TargetsA
         Flag = True
         break
 #
