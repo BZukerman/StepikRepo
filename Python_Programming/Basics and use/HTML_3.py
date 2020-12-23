@@ -7,9 +7,9 @@
 import re
 import requests
 #
-# global Resource, Text
+# global Resource, Tag, SC
 def calc(URL):                  # Повторяющиеся операции
-    global Resource, Tag, SC    # Text       # Глобальные переменые
+    global Resource, Tag, SC    # Глобальные переменые
 #
     Res = requests.get(URL)     # Запрос к URL
     SC = Res.status_code        # Получить статус-код
@@ -17,102 +17,67 @@ def calc(URL):                  # Повторяющиеся операции
 #        print("Calc_Status_Code:", SC)
 #        print("Calc_No")
 #        quit()
-    Tag = Res.text             # Выделение текстовой информации (Text)
-    print("Calc_Tag:", Tag)
-    Resource = re.findall(Pattern1, Tag)   # Ресурс запроса (Text)
-    print("Calc_Resource:", Resource)
+    Tag = Res.text              # Выделение текстовой информации
+    Resource = re.findall(Pattern1, Tag)   # Ресурс запроса
     return
 #
-# Pattern1 = r"https:(.*)"       # Паттерн для поиска тега (r"(<a.*? href=(.*))a>")
 Pattern1 = r"<a href=\"(.*)\""
-# Pattern2 = r"sample\d.html"           # Паттерн для поиска ресурса (d.html)
-#Pattern3 = r"https:(.*)"      # Паттерн для поиска пути r"https.*.html"
-Pattern3 = Pattern3 = r'/\/.*\"'
+Pattern3 = r"\/\/(.*)\""        # Паттерн для поиска пути между // и "
+Pattern4 = r"\/\/(.*)"
 #
+WayA = []
 WaysA = []
 WaysB = []
-TargetsA = []
+WayA2i = []
 Resource = []
-Resource2 = []
 TagsA = []
-SC_2 = []
 Flag = False
 #
-line = input()                  # Ввод URLA
-URLA = line.rstrip()            # Удаление пробелов в конце строки
-# TailA = re.findall(Pattern2, URLA)  # Выделение ресурса (d.html)
+lineA = input()                  # Ввод URLA
+URLA = lineA.rstrip()            # Удаление пробелов в конце строки
 calc(URLA)                      # Работа функции
 SC_A = SC
-if SC_A == 404 or SC == 500:
+if SC_A == 404 or SC_A == 500:
     print("A_No")
     quit()
 ResourceA = Resource            # Получение глобальной переменной
-print("ResourceA:", ResourceA)
-TagA = Tag                    # Получение глобальной переменной (Tag)
-print("TagA:", TagA)
-WayA = re.findall(Pattern3, TagA)  # Полный путь к ресурсу (Text)
-print("WayA:", WayA)
+# print("ResourceA:", ResourceA)
+TagA = Tag                      # Получение глобальной переменной
+# print("TagA:", TagA)
+WayA = re.findall(Pattern3, TagA)   # Полный путь к ресурсу (Text)
+# print("WayA:", WayA)
 WaysA.extend(WayA)              # Накопление путей в массив
-print("WaysA:", WaysA)
+# print("WaysA:", WaysA)
 TagsA.append(TagA)              # Откуда взялось \n' (конец строки!) в конце?
-# TagsA = TagsA + [TagA]
-print("TagsA:", TagsA)
+# print("TagsA:", TagsA)
 #
-line = input()                  # Ввод URLB
-URLB = line.rstrip()            # Удаление пробелов в конце строки
-#print("URLB:", URLB)
-WaysB.append(URLB)              # Путь по ссылке В
-print("WaysB:", WaysB)
+lineB = input()                  # Ввод URLB
+URLB = lineB.rstrip()            # Удаление пробелов в конце строки
+# print("URLB:", URLB)
+WaysB = re.findall(Pattern4, URLB)
+# print("WaysB:", WaysB)
+WaysB0 = WaysB[0]
+# print("WaysB0:", WaysB0)
 #
-LengthA = len(TagsA)        # WaysA
-print("LengthA:", LengthA)
+LengthA = len(TagsA)
+# print("LengthA:", LengthA)
 for i in range(LengthA):
-# Надо вызвать функцию!
-#    SC_i = SC
-#    SC_2.append(SC_i)
-#    print("SC_2:", SC_2)
-    WayAi = WaysA[i]        # ??? Resource_i ???
-    print("WayAi:", WayAi)
-    print(len(WayAi))
-    PathAi = WayAi[0:-1]
-    print("PathAi:", PathAi)
-    Resourcei = ResourceA[i]
-    print("Resourcei:", Resourcei)
-#    TagAi = Tag
-#    print("TagAi:", TagAi)
-    calc(Resourcei)
-    SCi = SC
-#    Resource2i = Resource
-#    print("Resource2i:", Resource2i)
+    WayAi = WaysA[i]
+#    print("WayAi:", WayAi)
+#    print(len(WayAi))
+    ResourceAi = ResourceA[i]
+#    print("ResourceAi:", ResourceAi)
+    calc(ResourceAi)
+    SC_Ai = SC
     TagAi = Tag
-    print("TagAi:", TagAi)
-                            # Выделить путь из TagAi !
-    Way2i = re.findall(Pattern3, TagAi)     # https: убрать из WaysB
-    print("Way2i:", Way2i)
-    Way2i0 = Way2i[0]
-    Path2i0 = Way2i0[0:-1]
-    print("Path2i0:", Path2i0)
-#    ResAi = requests.get(TagAi)     # Не URL!!! (WayAi)
-#    ResAi = WaysA[i]
-#    print("ResAi:", ResAi)
-#    ResAi = Req1i.text
-#    print("Res1i:", Res1i)
-#    SCi = ResAi.status_code
-#    TextAi = ResAi.text
-#    print("TextAi:", TextAi)
-#    print("SCi:", SCi)
-#    Resource1i = re.findall(Pattern2, TextAi)
-#    linei = re.findall(Pattern3, TextAi)
-#    print("linei:", linei)
-    if SCi == 200:
-#        TargetsA.append(Way2i)      # ???
-#        TargetsA = Way2i
-        TargetA = Path2i0
-        print("TargetsA:", TargetsA)
-#    else:
-#        Flag = False
-#        continue
-    if WaysB in Path2i0:   # TargetsA
+#    print("TagAi:", TagAi)
+    WayA2i = re.findall(Pattern3, TagAi)
+#    print("WayA2i:", WayA2i)
+    WayA2i0 = WayA2i[0]
+#    print("WayA2i0:", WayA2i0)
+    if SC_Ai != 200:
+        continue
+    if WaysB0 in WayA2i0:
         Flag = True
         break
 #
@@ -121,4 +86,3 @@ if Flag:
 else:
     print("No")
 quit()
-
