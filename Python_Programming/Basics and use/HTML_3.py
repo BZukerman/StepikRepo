@@ -24,6 +24,7 @@ def calc(URL):                  # Повторяющиеся операции
 Pattern1 = r"<a href=\"(.*)\""
 Pattern3 = r"\/\/(.*)\""        # Паттерн для поиска пути между // и "
 Pattern4 = r"\/\/(.*)"
+# Искать нежадно !???
 #
 WayA = []
 WaysA = []
@@ -33,12 +34,12 @@ Resource = []
 TagsA = []
 Flag = False
 #
-lineA = input()                  # Ввод URLA
-URLA = lineA.rstrip()            # Удаление пробелов в конце строки
+lineA = input()                 # Ввод URLA
+URLA = lineA.rstrip()           # Удаление пробелов в конце строки
 calc(URLA)                      # Работа функции
 SC_A = SC
 if SC_A == 404 or SC_A == 500:
-    print("A_No")
+    print("No")
     quit()
 ResourceA = Resource            # Получение глобальной переменной
 # print("ResourceA:", ResourceA)
