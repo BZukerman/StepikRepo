@@ -21,10 +21,9 @@ def calc(URL):                  # Повторяющиеся операции
     Resource = re.findall(Pattern1, Tag)   # Ресурс запроса
     return
 #
-Pattern1 = r"<a href=\"(.*)\""
-Pattern3 = r"\/\/(.*)\""        # Паттерн для поиска пути между // и "
-Pattern4 = r"\/\/(.*)"
-# Искать нежадно !???
+Pattern1 = r"<a href=\"(.*?)\""     # Нежадный поиск ссылки в функции
+Pattern3 = r"\/\/(.*?)\""           # Паттерн для поиска пути между // и " (нежадно)
+Pattern4 = r"\/\/(.*)"              # Путь по ссылке В
 #
 WayA = []
 WaysA = []
@@ -38,47 +37,48 @@ lineA = input()                 # Ввод URLA
 URLA = lineA.rstrip()           # Удаление пробелов в конце строки
 calc(URLA)                      # Работа функции
 SC_A = SC
-if SC_A == 404 or SC_A == 500:
+if SC_A != 200:                 # if SC_A == 404 or SC_A == 500:
     print("No")
     quit()
 ResourceA = Resource            # Получение глобальной переменной
-# print("ResourceA:", ResourceA)
+print("ResourceA:", ResourceA)
 TagA = Tag                      # Получение глобальной переменной
-# print("TagA:", TagA)
+print("TagA:", TagA)
 WayA = re.findall(Pattern3, TagA)   # Полный путь к ресурсу (Text)
-# print("WayA:", WayA)
+print("WayA:", WayA)
 WaysA.extend(WayA)              # Накопление путей в массив
-# print("WaysA:", WaysA)
-TagsA.append(TagA)              # Откуда взялось \n' (конец строки!) в конце?
-# print("TagsA:", TagsA)
+print("WaysA:", WaysA)
+TagsA.append(TagA)              # Откуда взялось \n' в конце? (конец строки!)
+print("TagsA:", TagsA)
 #
 lineB = input()                  # Ввод URLB
 URLB = lineB.rstrip()            # Удаление пробелов в конце строки
-# print("URLB:", URLB)
+print("URLB:", URLB)
 WaysB = re.findall(Pattern4, URLB)
-# print("WaysB:", WaysB)
+print("WaysB:", WaysB)
 WaysB0 = WaysB[0]
-# print("WaysB0:", WaysB0)
+print("WaysB0:", WaysB0)
 #
 LengthA = len(TagsA)
-# print("LengthA:", LengthA)
+print("LengthA:", LengthA)
 for i in range(LengthA):
+    print("i:", i)
     WayAi = WaysA[i]
-#    print("WayAi:", WayAi)
-#    print(len(WayAi))
-    ResourceAi = ResourceA[i]
-#    print("ResourceAi:", ResourceAi)
-    calc(ResourceAi)
+    print("WayAi:", WayAi)
+    print(len(WayAi))
+    URLAi = ResourceA[i]
+    print("URLAi:", URLAi)
+    calc(URLAi)
     SC_Ai = SC
     TagAi = Tag
-#    print("TagAi:", TagAi)
-    WayA2i = re.findall(Pattern3, TagAi)
-#    print("WayA2i:", WayA2i)
-    WayA2i0 = WayA2i[0]
+    print("TagAi:", TagAi)
+    WayA2i = re.findall(Pattern3, TagAi)    # На выходе список!
+    print("WayA2i:", WayA2i)
+#    WayA2i0 = WayA2i[0]             # ???
 #    print("WayA2i0:", WayA2i0)
     if SC_Ai != 200:
         continue
-    if WaysB0 in WayA2i0:
+    if WaysB0 in WayA2i:       # if WaysB0 in WayA2i0
         Flag = True
         break
 #
