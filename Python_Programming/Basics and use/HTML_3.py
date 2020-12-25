@@ -47,7 +47,7 @@ print("TagA:", TagA)
 if TagA == []:
     print("No")
     quit()
-WayA = re.findall(Pattern3, TagA)   # Полный путь к ресурсу (Text)
+WayA = re.findall(Pattern3, TagA)   # Полный путь к ресурсу (список)
 print("WayA:", WayA)
 WaysA.extend(WayA)              # Накопление путей в массив
 print("WaysA:", WaysA)
@@ -57,7 +57,7 @@ print("TagsA:", TagsA)
 lineB = input()                  # Ввод URLB
 URLB = lineB.rstrip()            # Удаление пробелов в конце строки
 print("URLB:", URLB)
-WaysB = re.findall(Pattern4, URLB)
+WaysB = re.findall(Pattern4, URLB)      # Зачем?
 print("WaysB:", WaysB)
 WaysB0 = WaysB[0]
 print("WaysB0:", WaysB0)
@@ -81,7 +81,7 @@ for i in range(LengthA):
 #    print("WayA2i0:", WayA2i0)
     if SC_Ai != 200 or TagAi == []:
         continue
-    if WaysB0 in WayA2i:        # if WaysB0 in WayA2i
+    if WaysB0 in WayA2i:        # if WaysB0 in WayA2i0 - старый вариант
         Flag = True
         break
 #
