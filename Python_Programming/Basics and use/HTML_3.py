@@ -21,7 +21,7 @@ def calc(URL):                  # Повторяющиеся операции
     Resource = re.findall(Pattern1, Tag)   # Ресурс запроса
     return
 #
-Pattern1 = r"<a href=\"(.*?)\""     # Нежадный поиск ссылки в функции
+Pattern1 = r"<a href=\"(.*?)\">"     # Нежадный поиск ссылки в функции
 Pattern3 = r"\/\/(.*?)\""           # Паттерн для поиска пути между // и " (нежадно)
 Pattern4 = r"\/\/(.*)"              # Путь по ссылке В
 #
@@ -44,6 +44,9 @@ ResourceA = Resource            # Получение глобальной пер
 print("ResourceA:", ResourceA)
 TagA = Tag                      # Получение глобальной переменной
 print("TagA:", TagA)
+if TagA == []:
+    print("No")
+    quit()
 WayA = re.findall(Pattern3, TagA)   # Полный путь к ресурсу (Text)
 print("WayA:", WayA)
 WaysA.extend(WayA)              # Накопление путей в массив
@@ -76,9 +79,9 @@ for i in range(LengthA):
     print("WayA2i:", WayA2i)
 #    WayA2i0 = WayA2i[0]             # ???
 #    print("WayA2i0:", WayA2i0)
-    if SC_Ai != 200:
+    if SC_Ai != 200 or TagAi == []:
         continue
-    if WaysB0 in WayA2i:       # if WaysB0 in WayA2i0
+    if WaysB0 in WayA2i:        # if WaysB0 in WayA2i
         Flag = True
         break
 #
