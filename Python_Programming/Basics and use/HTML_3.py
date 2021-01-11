@@ -13,18 +13,14 @@ def calc(URL):                  # Повторяющиеся операции
 #
     Res = requests.get(URL)     # Запрос к URL
     SC = Res.status_code        # Получить статус-код
-#    if SC == 404 or SC == 500:  # Ресурс не найден или ошибка на сервере
-#        print("Calc_Status_Code:", SC)
-#        print("Calc_No")
-#        quit()
     Tag = Res.text              # Выделение текстовой информации
     Resource = re.findall(Pattern1, Tag)   # Ресурс запроса
     return
 #
-Pattern1 = r"<a href=\"(.*?)\">"    # Нежадный поиск ссылки в функции
-# Pattern3 = r"\/\/(.*?)\""           # Паттерн для поиска пути между // и " (нежадно)
+Pattern1 = r"<a href=\"(.*?)\">"        # Нежадный поиск ссылки в функции
+# Pattern3 = r"\/\/(.*?)\""             # Паттерн для поиска пути между // и " (нежадно)
 Pattern3 = r"https:(.*?)\""
-# Pattern4 = r"\/\/(.*)"              # Путь по ссылке В
+# Pattern4 = r"\/\/(.*)"                # Путь по ссылке В
 Pattern4 = r"https:(.*)"
 #
 WayA = []
@@ -46,7 +42,10 @@ ResourceA = Resource            # Получение глобальной пер
 print("ResourceA:", ResourceA)
 TagA = Tag                      # Получение глобальной переменной
 print("TagA:", TagA)
-if TagA == []:
+#if TagA == []:
+#    print("No")
+#    quit()
+if ResourceA == []:
     print("No")
     quit()
 WayA = re.findall(Pattern3, TagA)   # Полный путь к ресурсу (список)
@@ -81,7 +80,9 @@ for i in range(LengthA):
     print("WayA2i:", WayA2i)
 #    WayA2i0 = WayA2i[0]             # ???
 #    print("WayA2i0:", WayA2i0)
-    if SC_Ai != 200 or TagAi == []:
+    if SC_Ai != 200:    # or TagAi == []:
+        continue
+    if URLAi == []:
         continue
     if WaysB0 in WayA2i:        # if WaysB0 in WayA2i0 - старый вариант
         Flag = True
