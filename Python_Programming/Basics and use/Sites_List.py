@@ -17,17 +17,20 @@ SC = Respond.status_code        # Статус-код
 List = Respond.text             # Строка списка ссылок
 print("List:")
 print(List)
-print(type(List))
+# print(type(List))
 l = len(List)
 print(l)
 #
 # Pattern = r"((\w{1,}\.){1,}\w{1,})"     # Паттерн поиска
 # Pattern = r"(\w*?(-){0,}\w*?\.){1,}(\w*?(-){0,}\w*?){0,}"
-Pattern = "(<a href=(\'|\")){1}(\w*?ps{0,}:\/|/){0,}(\w*?(-){0,}\w*?\.){1,}(\w*(-){0,}\w*?){0,}"
-Result = re.findall(Pattern, List)      # Список результатов поиска
+# Pattern = r'''(?:(<a href=('|"){1}){1}(\w*?p{1}s{0,}:(\/\/)){0,})((\w*?(-){0,}\w*?\.){1,}(\w*(-){0,}\w*?){0,})'''
+Pattern = r'''((\w*?(-){0,}\w*?(.){1}){1,}(\w*?(-){0,}\w*?){0,})'''
+#             12    3 3                   2    4    5 5        4    1
+Result = re.match(Pattern, List)      # Список результатов поиска
 print("Result:")
 print(Result)
-Length = len(Result)            # Длина списка результата поиска
+quit()
+# Length = len(Result)            # Длина списка результата поиска
 # print("Length:", Length)
 for i in range(Length):         # Цикл по элементам списка
     Mem_i = Result[i]           # Группы совпадения

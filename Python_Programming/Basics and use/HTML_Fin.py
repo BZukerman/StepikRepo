@@ -17,7 +17,7 @@ Respond_A = requests.get(Link_A)    # Запрос к URL Link_A
 SC_A = Respond_A.status_code        # Статус-код по запросу по ссылке А
 # print("SC_A:", SC_A)
 List_A = Respond_A.text             # Текст по запросу по ссылке А
-# print("List_A:", List_A)
+print("List_A:", List_A)
 #
 if SC_A == 200:                                 # Если ресурс доступен
     Result_A = re.findall(Pattern, List_A)      # Список по ресурсу запроса А
