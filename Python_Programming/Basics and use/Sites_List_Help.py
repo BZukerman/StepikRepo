@@ -16,12 +16,22 @@ import requests, re
 Row1 = '''<a href="http://neerc.ifmo.ru/school">'''
 Row2 = '''<a href='https://neerc.ifmo.ru'>'''
 Row3 = '''<a href="ftp://ctddev.ifmo.ru/distib"'''
-# Pattern = r'''(<a(' '){1,}(href=)('|"){0,}((\w*?('-'){0,}\w*?)p{1}s{0,})(':')(\/\/))'''
-#             1           2     2         34                 4         3     5    51
-Pattern = r'''\"(.*)\"'''       # Паттерн из предыдущей задачи
+Row4 = '''<a href="ya.ru">'''
+Row5 = '''<a href="www.ya.ru">'''
+Row6 = '''<a href="../skip_relative_links">'''
+#
+Pattern = r'''((<a\s+href=('|")){1}(\w*?ps*:\/\/){0,})'''
+#             12          3   32   4            4    1
+# Pattern = r'''("|')(.*)("|')'''       # Паттерн из предыдущей задачи - уточнил
 Res1 = re.findall(Pattern, Row1)
 print('''Res1:''', Res1)
 Res2 = re.findall(Pattern, Row2)
 print('''Res2:''', Res2)
 Res3 = re.findall(Pattern, Row3)
 print('''Res3:''', Res3)
+Res4 = re.findall(Pattern, Row4)
+print('''Res4:''', Res4)
+Res5 = re.findall(Pattern, Row5)
+print('''Res5:''', Res5)
+Res6 = re.findall(Pattern, Row6)
+print('''Res6:''', Res6)
