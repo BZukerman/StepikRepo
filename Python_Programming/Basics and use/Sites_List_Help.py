@@ -20,9 +20,17 @@ Row4 = '''<a href="ya.ru">'''
 Row5 = '''<a href="www.ya.ru">'''
 Row6 = '''<a href="../skip_relative_links">'''
 #
-Pattern = r'''((<a\s+href=('|")){1}(\w*?ps*:\/\/){0,})'''
+# Pattern = r'''((<a\s+href=('|")){1}(\w*?ps*:\/\/){0,})'''
 #             12          3   32   4            4    1
 # Pattern = r'''("|')(.*)("|')'''       # Паттерн из предыдущей задачи - уточнил
+#Pattern = r'''(?:((<a\s+href=('|")){1}(\w*?ps*:\/\/){0,}))((\w*?-?\w*?\.)+(\w*?-?\w*?)('|")?)'''
+#             0  12          3   32   4            4    1056            6 7          78   85
+First = '''(<a\s+?href=('|")(\w+?ps??:\/\/)|('|"))'''
+#          1           2   23           3 4   41
+Second = '''((\w+?-??\w+?\.)+(\w+?-??\w+?))'''
+#           12             2 3           31
+# Pattern = r'''(?:First)(Second)'''
+Pattern = Second
 Res1 = re.findall(Pattern, Row1)
 print('''Res1:''', Res1)
 Res2 = re.findall(Pattern, Row2)
