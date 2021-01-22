@@ -13,14 +13,14 @@ Respond = requests.get(URL)     # Запрос по заданному URL
 # print("Respond:", Respond)
 SC = Respond.status_code        # Статус-код
 # List = Respond.text.splitlines()             # Список ссылок - как список
-List = Respond.text             # Строка списка ссылок
+List = Respond.text     # Строка списка ссылок
 print("List:")
 print(List)
 # print(type(List))
 #
-Pattern1 = '''(<a\s+?href=('|")(\w+?ps??:\/\/)|('|"))'''     # Паттерн поиска
+Pattern1 = '''(<a\s+?href=('|")(\w+?ps?:\/\/)|('|"))'''     # Паттерн поиска
 Pattern2 = '''((\w+?-?\w+?\.)+(\w+?-?\w+?))'''
-Pattern = Pattern2
+Pattern = Pattern1
 Result = re.findall(Pattern, List)      # Список результатов поиска
 # print("Result:")
 # print(Result)
