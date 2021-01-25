@@ -3,7 +3,7 @@ import requests
 import re
 #
 # URL = input().strip()           # Ввод ссылки
-URL = "https://stepic.org/media/attachments/lesson/24471/01"  # Отладка
+URL = "https://stepic.org/media/attachments/lesson/24471/02"  # Отладка
 #
 Res_New = []        # Вспомогательные списки
 Mem_i = []
