@@ -21,24 +21,10 @@ Row5 = '''<a href='www.ya.ru'>'''
 Row6 = '''<a href="../skip_relative_links">'''
 Row7 = '''<a link href='http://neerc.ifmo.ru:1345'>'''
 Row8 = '''<a target="blank" href='http://sasd.ifmo.ru:1345'>'''
-Row9 = '''<a href="../some_path/index.html">'''         # Исключить относит. ссылку '''..''' !!!
+Row9 = '''<a href="../some_path/index.html">'''
 #
-# Pattern = r'''((<a\s+href=('|")){1}(\w*?ps*:\/\/){0,})'''
-#             12          3   32   4            4    1
-# Pattern = r'''("|')(.*)("|')'''       # Паттерн из предыдущей задачи - уточнил
-# Pattern = r'''(?:((<a\s+href=('|")){1}(\w*?ps*:\/\/){0,}))((\w*?-?\w*?\.)+(\w*?-?\w*?)('|")?)'''
-#             0  12          3   32   4            4    1056            6 7          78   85
-# First = '''(<a|A\s+?href|HREF\s+?=\s+?('|")(\w+?ps??:\/\/)|('|"))'''
-#          1                     2   23             3 4   41
-# Pattern1 = r'''(<a\s+?href\s*?=\s*?('|"))'''
-# Pattern1 = r'''(?:(<a\s+?href\s*?=\s*?('|")))'''    # Дает [('<a href="', '"')] или []
-#              1  2                   3   321
-# Pattern1 = r'''<a[\w\s=".]+href='''                 # Kira Podlesnaia
 Pattern = '''(?:(<a\s+?href\s*?=\s*?((('|")(\w+?ps*:\/\/))|('|"))(\w+\.)+(\w+)))'''
-#            1  2                   345   56            64 7   738     8  9   921
-Second = '''((\w+?-??\w+?\.)+(\w+?-??\w+?))'''
-#           12             2 3           31
-# Pattern = r'''(?:First)(Second)'''
+#            1  2                   345   56            64 7   738     8 9   921
 List1 = []
 Res1 = re.findall(Pattern, Row1)
 print('''Res1:''', Res1)
@@ -68,3 +54,5 @@ Res9 = re.findall(Pattern, Row9)
 print('''Res9:''', Res9)
 List1.append(Res9)
 print(List1)
+Length1 = len(Res1)
+print("Length1:", Length1)
