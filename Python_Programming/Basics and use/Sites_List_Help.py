@@ -13,7 +13,7 @@ f = """e"""
 # print('''**********''')
 #
 import requests, re
-Row1 = '''<a href="http://neerc.ifmo.ru/school">'''
+Row1 = '''<a href="http://nee-rc.if-mo.ru/school">'''
 Row2 = '''<a href='https://neerc.ifmo.ru'>'''
 Row3 = '''<a href="ftp://ctddev.ifmo.ru/distib"'''
 Row4 = '''<a href="ya.ru">'''
@@ -23,8 +23,8 @@ Row7 = '''<a link href='http://neerc.ifmo.ru:1345'>'''
 Row8 = '''<a target="blank" href='http://sasd.ifmo.ru:1345'>'''
 Row9 = '''<a href="../some_path/index.html">'''
 #
-Pattern = '''(?:(<a\s+?href\s*?=\s*?((('|")(\w+?ps*:\/\/))|('|"))(\w+\.)+(\w+)))'''
-#            1  2                   345   56            64 7   738     8 9   921
+Pattern = '''(?:(<a\s.*?href\s*?=\s*?(('|")(\w+?ps*:\/\/))|(('|")(\w+-?\w?)+\.)+(\w+-?)))'''
+#            1  2                    34   45            53 67   78        8   6 9     921
 List1 = []
 Res1 = re.findall(Pattern, Row1)
 print('''Res1:''', Res1)

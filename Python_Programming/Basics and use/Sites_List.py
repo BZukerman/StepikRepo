@@ -3,7 +3,7 @@ import requests
 import re
 #
 # URL = input().strip()           # Ввод ссылки
-# URL = "https://stepic.org/media/attachments/lesson/24471/01"  # Отладка
+# URL = "https://stepic.org/media/attachments/lesson/24471/02"  # Отладка
 URL = "http://pastebin.com/raw/2mie4QYa"    # Андрій Петрів
 #
 Res_New = []        # Вспомогательные списки
@@ -24,8 +24,11 @@ print(List)
 #
 # Pattern1 = '''(<a\s+?href=('|")(\w+?ps?:\/\/)|('|"))'''     # Паттерн поиска
 # Pattern2 = '''((\w+?-?\w+?\.)+(\w+?-?\w+?))'''
-Pattern = '''(?:(<a\s+?href\s*?=\s*?((('|")(\w+?ps*:\/\/))|('|"))(\w+\.)+(\w+)))'''
-#            1  2                   345   56            64 7   738     8 9   921
+Pattern = '''(?:(<a\s.*?href\s*?=\s*?((('|")(\w+?ps*:\/\/))|('|"))(\w+(-?)\.)+(\w+)))'''
+#            1  2                    345   56            64 7   738     8 9   921
+Pattern1 = r'''((<a\s.*?href\s*?=\s*?('|")(\w+?ps*:\/\/))|(<a\s+?href\s*?=\s*?('|")))'''
+#              12                    3   34            42 5                   6   651
+#
 Result = re.findall(Pattern, List)      # Список результатов поиска
 print("Result:")
 print(Result)
@@ -40,21 +43,20 @@ print("Length:", Length)
 print("RNL:")
 for i in RNL:
     print(i)
-Pattern1 = r'''((<a\s+?href\s*?=\s*?('|")(\w+?ps*:\/\/))|(<a\s+?href\s*?=\s*?('|")))'''
-#              12                   3   34            42 5                   6   651
 for i in range(Length):
     Mem_i = RNL[i]
     Site_i = re.sub(Pattern1, "", Mem_i)
-    print(Site_i)
+#    print(Site_i)
     Sites.append(Site_i)
-Res_Set = sorted(Sites)           # Отсортированный список
-# Res_Set = Sites.sort()
-print(Res_Set)
+print("Sites:")
+print(Sites)
+RS = set(Sites)       # Исключение повторяющихся элементов (множество)
+print("RS:")
+print(RS)
+# RS = set(Sites)
+Res_Set = sorted(RS)           # Отсортированный список
 print("Res_Set:")
+# print(Res_Set)
 for i in Res_Set:
     print(i)
-RS = set(Res_Set)       # Исключение повторяющихся элементов (множество)
-print("RS:")
-# print(RS)
-for i in RS:
-    print(i)
+
