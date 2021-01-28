@@ -4,7 +4,8 @@ import re
 #
 # URL = input().strip()           # Ввод ссылки
 # URL = "https://stepic.org/media/attachments/lesson/24471/02"  # Отладка
-URL = "http://pastebin.com/raw/2mie4QYa"    # Андрій Петрів
+# URL = "http://pastebin.com/raw/2mie4QYa"    # Андрій Петрів #1
+URL = "http://pastebin.com/raw/hfMThaGb"    # Андрій Петрів #2
 #
 Res_New = []        # Вспомогательные списки
 Mem_i = []
@@ -24,10 +25,10 @@ print(List)
 #
 # Pattern1 = '''(<a\s+?href=('|")(\w+?ps?:\/\/)|('|"))'''     # Паттерн поиска
 # Pattern2 = '''((\w+?-?\w+?\.)+(\w+?-?\w+?))'''
-Pattern = '''(?:(<a\s.*?href\s*?=\s*?((('|")(\w+?ps*:\/\/))|('|"))(\w+(-?)\.)+(\w+)))'''
-#            1  2                    345   56            64 7   738     8 9   921
-Pattern1 = r'''((<a\s.*?href\s*?=\s*?('|")(\w+?ps*:\/\/))|(<a\s+?href\s*?=\s*?('|")))'''
-#              12                    3   34            42 5                   6   651
+Pattern = '''(?:(<a\s.*?href\s*?=\s*?(('|")(\w+?ps*:\/\/))|('|")(\w+-?\w+\.)+(\w+-?\w+)))'''
+#            1  2                    34   45            53 6   67          7 8        821
+Pattern1 = r'''((<a\s.*?href=('|")(\w+?ps*:\/\/))|(<a\s+?href\s*?=\s*?('|")))'''
+#              12            3   34            42 5                   6   651
 #
 Result = re.findall(Pattern, List)      # Список результатов поиска
 print("Result:")
