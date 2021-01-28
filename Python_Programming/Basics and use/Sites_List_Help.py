@@ -23,8 +23,8 @@ Row7 = '''<a link href='http://neerc.ifmo.ru:1345'>'''
 Row8 = '''<a target="blank" href='http://sasd.ifmo.ru:1345'>'''
 Row9 = '''<a href="../some_path/index.html">'''
 #
-Pattern = '''(?:(<a\s.*?href\s*?=\s*?s((('|")(\w+?ps*:\/\/))|('|")))(\w+-?\w+\.)+(\w+-?\w+)))'''
-#            1  2                     345   56            63 7   7438          8 9        921
+Pattern = '''(?:(<a\s.*?href\s*?=\s*?((('|")(\w+?ps*:\/\/))|('|"))(\w+-?\w+\.)+(\w+-?\w+)))'''
+#            1  2                    345   56            64 7   738          8 9        921
 List1 = []
 Res1 = re.findall(Pattern, Row1)
 print('''Res1:''', Res1)
