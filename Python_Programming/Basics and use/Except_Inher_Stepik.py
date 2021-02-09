@@ -22,26 +22,26 @@ Inher = []          # наследования классов и исключе�
 Exc_j = []
 Exc = []
 # Ввод классов и наследований
-# Inf = open('E:\Tsuker\StepikRepo\Except_In_5.txt', 'r')    # Открытие файла ввода
-# Classes = int(Inf.readline())   # From file
-Classes = int(input())      # Число описаний классов
-# print("Classes:", Classes)
+Inf = open('E:\Tsuker\StepikRepo\Except_In_5.txt', 'r')    # Открытие файла ввода
+Classes = int(Inf.readline())   # From file
+# Classes = int(input())      # Число описаний классов
+print("Classes:", Classes)
 for i in range(Classes):            # From file
-#    line = Inf.readline().strip()   # From file
-#    Inher_i = line.split(" : ") # From file
-    Inher_i = input().split(" : ")  # Парсинг данных
-    Inher.append(Inher_i)       # Добавали в список
+    line = Inf.readline().strip()   # From file
+    Inher_i = line.split(" : ")     # From file
+#    Inher_i = input().split(" : ")  # Парсинг данных
+    Inher.append(Inher_i)           # Добавали в список
 # Ввод исключений
-# Excepts = int(Inf.readline())    # From file
-Excepts = int(input())        # Число исключений
-# print("Excepts:", Excepts)
+Excepts = int(Inf.readline())    # From file
+# Excepts = int(input())        # Число исключений
+print("Excepts:", Excepts)
 for j in range(Excepts):        # From file
-#    line = Inf.readline().strip()         # From file
+    line = Inf.readline().strip()         # From file
 #    line = Inf.readline()       # From file
-#    Exc_j = line.split()        # From file
-    Exc_j = input().split()     # Парсинг запроса
+    Exc_j = line.split()        # From file
+#    Exc_j = input().split()     # Парсинг запроса
     Exc.append(Exc_j)           # Добавили в список
-# Inf.close()                 # From file
+Inf.close()                 # From file
 # print("Exc:", Exc)
 # Словарь Relatives = {Keys : Pars}
 # Множество Keys.
@@ -85,12 +85,12 @@ N_Keys = len(Keys)                      # Длина списка ключей
 # print("N_Keys:", N_Keys)
 # print("Keys:", Keys)
 # print("Pars:", Pars)
-# print("Relatives:")
-# print(Relatives)
+print("Relatives:")
+print(Relatives)
 # Печать словаря Relatives по парам Key:Pars
-#for k in range(N_Keys):
-#    Key_k = Keys[k]
-#    Val_k = Relatives.get(Key_k)
+for k in range(N_Keys):
+    Key_k = Keys[k]
+    Val_k = Relatives.get(Key_k)
 # Поиск путей от заданных младших детей ко всем старшим предкам (ключам)
 Req_i = []
 Result = []
@@ -142,5 +142,5 @@ for i in range(Excepts):
 Length = len(Extra)             # Длина списка избыточных исключений
 # print("Number of Exceptions:", Length)
 # print("Extra Exceptions:")      # Избыточные исключения
-for i in range(Length):         # Печать пострчно
+for i in range(Length):         # Печать пострoчно
     print(Extra[i])
