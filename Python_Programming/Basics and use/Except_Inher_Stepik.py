@@ -102,6 +102,7 @@ for i in range(Excepts):        # Цикл по заданным исключе�
         if Father_j == Kid_i:   # Странное свойство Python
             continue
         Ways = find_path(Relatives, Kid_i, Father_j)  # Вызов функции
+        print("Ways:", Ways)
         if Ways != None:            # Путь есть
             Result.append(Ways)     # Пути как списки
         else:                       # Путь отсутствует
