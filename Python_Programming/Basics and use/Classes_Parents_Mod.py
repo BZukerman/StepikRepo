@@ -67,10 +67,25 @@ for i in range(Length):
     Relatives.update(Pair_i)
 print("Relatives:", Relatives)
 #
-#v = []
+# Транспонирование словаря. Алгоритм заимствован. Источник:
+# https://coderoad.ru/23203726/python-%D1%80%D0%B5%D0%B2%D0%B5%D1%80%D1%81-%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8F
+#
 New_Relatives = dict.fromkeys(Relatives.keys())
 for k, v in Relatives.items():
   for x in v:
-    if New_Relatives[x]: New_Relatives[x] += [k]
-    else:    New_Relatives[x] = [k]
+    if New_Relatives[x]:
+        New_Relatives[x] = New_Relatives[x] + [k]    # New_Relatives[x] += [k]
+    else:
+        New_Relatives[x] = [k]
 print("New_Relatives:", New_Relatives)
+#
+for k in range(Length):
+    Key_k = Keys[k]
+    Par_i = New_Relatives.get(Key_k)
+#    print(Par_i)
+    if Par_i == None:
+        Len_P = 1
+        print(Key_k, ":",  Len_P)
+        continue
+    Len_P = len(Par_i) + 1  # количество членов списка. Класс сам себе потомок/предок!
+    print(Key_k, ":",  Len_P)
