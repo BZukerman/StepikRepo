@@ -28,6 +28,7 @@ NewDictj = [{}]
 NewDict = [{}]
 Keys = []
 Vals = []
+Vals_i = []
 Result = []
 Relatives = {}
 print("Classes:", Classes)
@@ -86,7 +87,8 @@ print("Len_R:", Len_R)
 for j in range(Length):         # Цикл по ключам
     Count = 1                   # 0 ==> 1 т.к. класс сам себе потомок/предок
     Key_j = Keys[j]
-    for i in range(Len_V):      # Цикл (по путям Len_R) Vals! Len_V
-        if Key_j in Vals[i]:    # Result[i] ==> Vals[i]
+    for i in range(Len_R):      # Цикл (по путям Len_R) Vals! Len_V
+        Vals_i = Result[i]
+        if Key_j == Vals_i[-1]:    # Result[i] ==> Vals[i] ==> if Key_j in Vals[i]:
             Count = Count + 1
     print(Key_j, ":",  Count)
