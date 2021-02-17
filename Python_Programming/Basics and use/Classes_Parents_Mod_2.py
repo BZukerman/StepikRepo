@@ -1,22 +1,25 @@
 #
+# Bариант find_all_paths НЕ ДАЕТ учета внуков и правнуков, только дети первого уровня!
 import json
 #
-def find_path(graph, start, end, path=[]):  # Функция заимствована:
-    #    http://www.infocity.kiev.ua/prog/python/content/pytonesse_3.shtml
+def find_all_paths(graph, start, end, path=[]): # # Функция поиска ВСЕХ путей заимствована:
+    # http://www.infocity.kiev.ua/prog/python/content/pytonesse_3.shtml
     path = path + [start]
     if start == end:
-        return path
-#    if not graph.has_key(start):
+        return [path]
+    #        if not graph.has_key(start):
     if start not in graph:
-        return None
+        return []
+    paths = []
     for node in graph[start]:
         if node not in path:
-            newpath = find_path(graph, node, end, path)
-            if newpath: return newpath
-    return None
+            newpaths = find_all_paths(graph, node, end, path)
+            for newpath in newpaths:
+                paths.append(newpath)
+    return paths
 #
-J_Data = '[{"name": "A", "parents": []}, {"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}]'
-# J_Data = '[{"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}, {"name": "A", "parents": []}, {"name": "D", "parents":["C", "F"]}, {"name": "E", "parents":["D"]}, {"name": "F", "parents":[]}]'
+# J_Data = '[{"name": "A", "parents": []}, {"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}]'
+J_Data = '[{"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}, {"name": "A", "parents": []}, {"name": "D", "parents":["C", "F"]}, {"name": "E", "parents":["D"]}, {"name": "F", "parents":[]}]' # 514213
 # J_Data = '[{"name": "A", "parents": []}, {"name": "D", "parents": ["A", "B"]}, {"name": "C", "parents": ["E", "D"]}, {"name": "E", "parents": ["A"]}, {"name": "F", "parents": ["C"]}, {"name": "G", "parents": ["D"]}, {"name": "F", "parents": ["G"]}, {"name": "K", "parents": ["E", "B"]}]'
 # J_Data = '[{"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}, {"name": "A", "parents": []}, {"name": "D", "parents":["C", "F"]}, {"name": "E", "parents":["D"]}, {"name": "F", "parents":[]}]'
 # J_Data = '[{"name": "A", "parents": []}, {"name": "B", "parents": ["A"]}, {"name": "C", "parents": ["A"]}, {"name": "D", "parents": ["B", "C"]}, {"name": "V", "parents": ["D"]}]'
@@ -39,27 +42,27 @@ Length = len(Classes)
 print("Length:", Length)
 # print("Dicts:", Dicts)
 Dicts = Dicts[1:]
-print("Dicts:", Dicts)
+# print("Dicts:", Dicts)
 for j in range(Length):
     Dj = Dicts[j]
 #    print("Dj:", Dj)
     Keyj = Dj.get("name")
-    print("Keyj:", Keyj)
+#    print("Keyj:", Keyj)
     Keys.append(Keyj)
     Valj = Dj.get("parents")
 #    if Valj == []:
 #        Valj = []
-    print("Valj:", Valj)
+#    print("Valj:", Valj)
     Vals.append(Valj)
     NewDictj = dict.fromkeys(Keyj, Valj)
-    print("NewDictj:", NewDictj)
+#    print("NewDictj:", NewDictj)
     NewDict.append(NewDictj)
 NewDict = NewDict[1:]
 print("NewDict:", NewDict)
 print("Keys:", Keys)
 print("Vals:", Vals)
 Len_V = len(Vals)
-print("Len_V:", Len_V)
+# print("Len_V:", Len_V)
 for i in range(Length):
     Key_i = Keys[i]
     Val_i = Vals[i]
@@ -67,10 +70,33 @@ for i in range(Length):
     Relatives.update(Pair_i)
 print("Relatives:", Relatives)
 #
+# Получение путей от всех узлов ко всем узлам без лишних ("обратных") путей
+#
+for i in range(Length):             # Цикл по ключам (Classes) (rows)
+    Key_i = Keys[i]
+    Rel_i = Relatives.get(Key_i)
+#    print("Key_i:", Key_i)
+#    Val_i = Rel_i.get(Key_i)
+#    print("Rel_i:", Rel_i)
+    Len_i = len(Rel_i)
+    for j in range(i, Length):      # Цикл по ключам (Classes) (columns) - верхний треугольник
+#        Val_jj = Rel_i[j]
+        Key_j = Keys[j]
+        Ways = find_all_paths(Relatives, Key_i, Key_j)      # Путь от ключа к предку, его дает функция
+#        print("Ways:", Ways)
+        Result = Result + Ways         # Дозапись в список списков путей Result
+print("Result:", Result)            # Список списков путей Result: Result.append(Ways)
+# quit()
+Keys = sorted(Keys)
+print("Sorted Keys:", Keys)
+Len_R = len(Result)                 # Длина списка списков путей
+# print("Len_R:", Len_R)
+# quit()
+#
 # Транспонирование словаря Relatives в New_Relatives. Алгоритм заимствован. Источник:
 # https://coderoad.ru/23203726/python-%D1%80%D0%B5%D0%B2%D0%B5%D1%80%D1%81-%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8F
 #
-New_Relatives = dict.fromkeys(Relatives.keys())
+New_Relatives = dict.fromkeys(Relatives.keys())     # Словарь Предок: Потомки
 for k, v in Relatives.items():
   for x in v:
     if New_Relatives[x]:
@@ -87,5 +113,5 @@ for k in range(Length):
         Len_P = 1
         print(Key_k, ":",  Len_P)
         continue
-    Len_P = len(Par_i) + 1  # количество членов списка. Класс сам себе потомок/предок!
+    Len_P = len(Par_i) + 1      # количество членов списка. Класс сам себе потомок/предок!
     print(Key_k, ":",  Len_P)

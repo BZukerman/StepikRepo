@@ -2,7 +2,7 @@
 import json
 #
 def find_path(graph, start, end, path=[]):  # Функция заимствована:
-    #    http: // www.infocity.kiev.ua / prog / python / content / pytonesse_3.shtml
+    #    http://www.infocity.kiev.ua/prog/python/content/pytonesse_3.shtml
     path = path + [start]
     if start == end:
         return path

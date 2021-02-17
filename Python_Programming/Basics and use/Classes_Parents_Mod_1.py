@@ -2,7 +2,7 @@
 import json
 #
 def find_path(graph, start, end, path=[]):  # Функция заимствована:
-    #    http: // www.infocity.kiev.ua / prog / python / content / pytonesse_3.shtml
+    #    http://www.infocity.kiev.ua/prog/python/content/pytonesse_3.shtml
     path = path + [start]
     if start == end:
         return path
@@ -39,27 +39,27 @@ Length = len(Classes)
 print("Length:", Length)
 # print("Dicts:", Dicts)
 Dicts = Dicts[1:]
-print("Dicts:", Dicts)
+# print("Dicts:", Dicts)
 for j in range(Length):
     Dj = Dicts[j]
 #    print("Dj:", Dj)
     Keyj = Dj.get("name")
-    print("Keyj:", Keyj)
+#    print("Keyj:", Keyj)
     Keys.append(Keyj)
     Valj = Dj.get("parents")
 #    if Valj == []:
 #        Valj = []
-    print("Valj:", Valj)
+#    print("Valj:", Valj)
     Vals.append(Valj)
     NewDictj = dict.fromkeys(Keyj, Valj)
-    print("NewDictj:", NewDictj)
+#    print("NewDictj:", NewDictj)
     NewDict.append(NewDictj)
 NewDict = NewDict[1:]
 print("NewDict:", NewDict)
 print("Keys:", Keys)
 print("Vals:", Vals)
 Len_V = len(Vals)
-print("Len_V:", Len_V)
+# print("Len_V:", Len_V)
 for i in range(Length):
     Key_i = Keys[i]
     Val_i = Vals[i]
@@ -72,9 +72,9 @@ print("Relatives:", Relatives)
 for i in range(Length):             # Цикл по ключам (Classes) (rows)
     Key_i = Keys[i]
     Rel_i = Relatives.get(Key_i)
-    print("Key_i:", Key_i)
+#    print("Key_i:", Key_i)
 #    Val_i = Rel_i.get(Key_i)
-    print("Rel_i:", Rel_i)
+#    print("Rel_i:", Rel_i)
     Len_i = len(Rel_i)
     for j in range(i, Length):      # Цикл по ключам (Classes) (columns) - верхний треугольник
 #        Val_jj = Rel_i[j]
@@ -86,7 +86,7 @@ print("Result:", Result)            # Список списков путей Res
 Keys = sorted(Keys)
 print("Sorted Keys:", Keys)
 Len_R = len(Result)                 # Длина списка списков путей
-print("Len_R:", Len_R)
+# print("Len_R:", Len_R)
 # quit()
 #
 # Транспонирование словаря Relatives в New_Relatives. Алгоритм заимствован. Источник:
