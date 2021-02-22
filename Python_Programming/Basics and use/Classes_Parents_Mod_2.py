@@ -80,6 +80,7 @@ for i in range(Length):             # Цикл по ключам (Classes) (rows
 #    print("Rel_i:", Rel_i)
     Len_i = len(Rel_i)
     for j in range(i, Length):      # Цикл по ключам (Classes) (columns) - верхний треугольник
+#    for i in range(Length):         # Пути от всех узлов ко всем
 #        Val_jj = Rel_i[j]
         Key_j = Keys[j]
         Ways = find_all_paths(Relatives, Key_i, Key_j)      # Путь от ключа к предку, его дает функция
