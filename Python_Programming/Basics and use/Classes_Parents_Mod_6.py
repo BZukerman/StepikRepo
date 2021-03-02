@@ -38,9 +38,9 @@ Relatives = {}
 for i in Classes:
     Dicts.append(i)
 Length = len(Classes)
-# print("Length:", Length)
+print("Length:", Length)
 Dicts = Dicts[1:]
-# print("Dicts:", Dicts)
+print("Dicts:", Dicts)
 for j in range(Length):
     Dj = Dicts[j]
 #    print("Dj:", Dj)
@@ -55,17 +55,32 @@ for j in range(Length):
 NewDict = NewDict[1:]                       # Срез словаря (убрать " ")
 print("NewDict:", NewDict)
 print("Keys:", Keys)
+Keys_S = set(Keys)
+print("Keys_S:", Keys_S)
+Keys = list(Keys_S)
+print("Keys:", Keys)
 print("Vals:", Vals)
 Len_V = len(Vals)
+Vals_L = []
+for k in Vals:
+    Vals_L.extend(k)
+Set_V = set(Vals_L)
+print("Set_V:", Set_V)
+for k in Set_V:
+    if k not in Keys:
+        Keys.append(k)
+print("Keys:", Keys)
+# quit()
 # print("Len_V:", Len_V)
 for i in range(Length):
     Key_i = Keys[i]
-    Val_i = Vals[i]
+    Val_i = Vals[i]                     # ???
     Pair_i = {Key_i: Val_i}             # Пара предок: потомки 1 уровня
     Relatives.update(Pair_i)
 print("Relatives:", Relatives)
 Length = len(Relatives)
 print("Length:", Length)
+# quit()
 #
 # Получение путей от всех узлов ко всем узлам без лишних ("обратных") путей
 #
@@ -88,6 +103,7 @@ print("Len_R:", Len_R)
 # https://coderoad.ru/23203726/python-%D1%80%D0%B5%D0%B2%D0%B5%D1%80%D1%81-%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8F
 #
 New_Relatives = dict.fromkeys(Relatives.keys())     # Словарь Предок: Потомки
+print("New_Relatives:", New_Relatives)
 for k, v in Relatives.items():
   for x in v:
     if New_Relatives[x]:
