@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\Python_Programming\Basics and use\API_1.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Python_Programming\Basics and use\Classes_Parents_Mod_5.py">
           <value>
             <Attribute>
