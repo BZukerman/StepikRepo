@@ -1,10 +1,10 @@
-# Проверить подсчет детей ВСЕХ уровней!
+# Мутный результат!
 # NewDict и Relatives словари {Kid: Parents}
 #
 # J_Data = '[{"name": "A", "parents": []}, {"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}]' # 312
 # J_Data = '[{"name": "BB", "parents": ["AA", "CC"]}, {"name": "CC", "parents": ["AA"]}, {"name": "AA", "parents": []}, {"name": "DD", "parents":["CC", "FF"]}, {"name": "EE", "parents":["DD"]}, {"name": "FF", "parents":[]}]'   # Анастасия Гончар 514213
 # J_Data = '[{"name": "A", "parents": []}, {"name": "D", "parents": ["A", "B"]}, {"name": "C", "parents": ["E", "D"]}, {"name": "E", "parents": ["A"]}, {"name": "F", "parents": ["C"]}, {"name": "G", "parents": ["D"]}, {"name": "F", "parents": ["G"]}, {"name": "K", "parents": ["E", "B"]}]'     #77244121
-J_Data = '[{"name": "A", "parents": []}, {"name": "D", "parents": ["A", "B"]}, {"name": "C", "parents": ["E", "D"]}, {"name": "E", "parents": ["A"]}, {"name": "F", "parents": ["C"]}, {"name": "G", "parents": ["D"]}, {"name": "F", "parents": ["G", "XX"]}, {"name": "K", "parents": ["E", "B", "YYY"]}]'  # Мой вариант F: C. G, X ! 7724412133
+J_Data = '[{"name": "A", "parents": []}, {"name": "D", "parents": ["A", "B"]}, {"name": "C", "parents": ["E", "D"]}, {"name": "E", "parents": ["A"]}, {"name": "F", "parents": ["C"]}, {"name": "G", "parents": ["D"]}, {"name": "F", "parents": ["G", "XX"]}, {"name": "K", "parents": ["E", "B", "YYY"]}]'  # Мой вариант F: C. G, X ! 8928812134
 # J_Data = '[{"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}, {"name": "A", "parents": []}, {"name": "D", "parents":["C", "F"]}, {"name": "E", "parents":["D"]}, {"name": "F", "parents":[]}]'     # 514213
 # J_Data = '[{"name": "A", "parents": []}, {"name": "B", "parents": ["A"]}, {"name": "C", "parents": ["A"]}, {"name": "D", "parents": ["B", "C"]}, {"name": "V", "parents": ["D"]}]'  # 53321
 # J_Data = '[{"name": "dfgre", "parents": ["gsdfgre"]}, {"name": "hsdgreg", "parents": ["dfgre", "gsd"]}, {"name": "gsd", "parents": ["dfgre"]}, {"name": "gsdfgre", "parents": []}]'     # 3241
@@ -86,12 +86,19 @@ for k in set(k for d in NewDict for k in d):
 #    print("Val:", Val)
     Len_V = len(Val)
 #    print("Len_V:", Len_V)
-    if Len_V > 1:
-        for i in range(Len_V):
-            Val_New.extend(Val[i])
-#            print(Val_New)
-        Pair = {k: [Val_New]}
-        super_dict.update(Pair)
+    for i in range(Len_V):
+        Val_New.extend(Val[i])
+    Set_VN = set(Val_New)
+    V_N = list(Set_VN)
+    Pair = {k: [V_N]}
+    super_dict.update(Pair)
+
+#    if Len_V > 1:
+#        for i in range(Len_V):
+#            Val_New.extend(Val[i])
+##            print(Val_New)
+#        Pair = {k: [Val_New]}
+#        super_dict.update(Pair)
 print("super_dict:", super_dict)
 Len_SD = len(super_dict)
 # print("Len_SD:", Len_SD)
