@@ -21,7 +21,7 @@ List = []
 URL_0 = "http://numbersapi.com/"
 URL_2 = "/math?json=true"
 #
-# Ввод данных из файла
+# Ввод данных из файла (пример - E:\Tsuker\StepikRepo\API_1_In.txt)
 #
 with open('E:\DownLoad\Browsers\dataset_24476_3 (2).txt', 'r') as In_F:    # Чтение из файла ввода
     for line in In_F:
@@ -64,8 +64,10 @@ for i in range(Count):
     Reply.append(Reply_i)
 # print("Reply:", Reply)
 # quit()
-# Запись в файл вывода
+# Запись в файл вывода (r - для устранения ошибки:
+# SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-3: truncated \UXXXXXXXX escape)
 with open(r"E:\Upload\API_1_Out.txt", "w") as Out_F:
     for mem in Reply:
 #        print(mem)
-        Out_F.write(mem)
+        Mem = mem + "\n"
+        Out_F.write(Mem)
