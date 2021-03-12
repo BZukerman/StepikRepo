@@ -48,9 +48,9 @@ for i in range(Count):                  # Цикл по проверяемым �
 #    print(Resp_i)
     Data_i = Resp_i.text                # Сохранил тест ответа для анализа
 #    print(type(Data))
-    Request_i = Data_i                  # Ответ для проверяемого числа (формат JSON)
-#    print("Request_i:", Request_i)
-    Request_Pi = json.loads(Request_i)  # Ответ для проверяемого числа (формат Python)
+    Request_Ji = Data_i                  # Ответ для проверяемого числа (формат JSON)
+#    print("Request_Ji:", Request_Ji)
+    Request_Pi = json.loads(Request_Ji)  # Ответ для проверяемого числа (формат Python)
 #    print("Request_Pi:", Request_Pi)
     Len_Ri = len(Request_Pi)            # Длина списка ответа
 #    print("Len_Ri:", Len_Ri)
