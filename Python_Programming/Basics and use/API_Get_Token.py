@@ -19,7 +19,7 @@ print("j:", j)
 # достаем токен
 token = j["token"]
 print("token:", token)
-#
+quit()
 # создаем заголовок, содержащий наш токен
 headers = {"X-Xapp-Token" : token}
 # инициируем запрос с заголовком
