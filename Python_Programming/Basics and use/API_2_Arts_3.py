@@ -73,16 +73,29 @@ for i in range (Len_ND):
     print(i, Key_i, Val_i)
 # quit()
 Set_BDs = set(Keys)
-print(Set_BDs)
+print("Set_BDs:", Set_BDs)
 List_BDs = sorted(list(Set_BDs))
 print("List_BDs:", List_BDs)
 Len_BDs = len(List_BDs)
 print("Len_BDs:", Len_BDs)
-for i in range(Len_ND):
-    Val_i = []
-    Key_i = Keys[i]
-    Dict_i = Dicts[i]
-    Vals_i = Dict_i.get(Key_i)
-    if Key_i in Keys:
-        Val_i.append(Vals_i)
-
+#for i in range(Len_ND):
+#    Val_i = []
+#    Key_i = Keys[i]
+#    Dict_i = Dicts[i]
+#    Vals_i = Dict_i.get(Key_i)
+#    if Key_i in Keys:
+#        Val_i.append(Vals_i)
+#
+Super_Dict = {}
+for k in set(k for d in Dicts for k in d):
+    Super_Dict[k] = [d[k] for d in Dicts if k in d]
+print("Super_Dict")
+print(Super_Dict)
+Len_SD = len(Super_Dict)
+print("Len_SD:", Len_SD)
+#
+print("Super_Dict:")
+for i in range(Len_SD):
+    Key_i = List_BDs[i]
+    Val_i = Super_Dict.get(Key_i)
+    print(Key_i, Val_i)
