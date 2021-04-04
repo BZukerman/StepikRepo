@@ -1,6 +1,7 @@
 #
 #  Токен меняется, надо проверять его каждый раз и получать заново! (API_Get_Token.py)
 #  Предусмотрен случай нескольких имен с одной и той же датой рождения
+#  1974 is repeated 2 times!
 #
 import requests
 import json
@@ -24,6 +25,7 @@ Headers = {"X-Xapp-Token" : Token}
 #
 Dict = {}
 Keys = []
+Dicts = [{}]
 for i in range(Count):
     Names_i = []
     Suspect_ID_i = List_Check[i]
@@ -45,36 +47,42 @@ for i in range(Count):
     S_N_i = Data_Pi.get("sortable_name")
     Names_i.append(S_N_i)
 #    print("S_N_i:", S_N_i)
-    print("Names_i:", Names_i)
-    BD_i = Data_Pi.get("birthday")
-#    print("BD_i:", BD_i)
-    if BD_i in Keys:
-        Names_i.append(S_N_i)
-        Pair_i = {Key_i: sorted(Names_i)}
-        Dict.update(Pair_i)
-        continue
-    Key_i = BD_i
-    Keys.append(Key_i)
-#    Data_I = S_N_i
-    Data_i = S_N_i
-    Pair_i = {Key_i: Data_i}
-    Dict.update(Pair_i)
-print("Dict:")
-Len_SK = len(Keys)
-print("Len_SK:", Len_SK)
-Sorted_Keys = sorted(Keys)
-print(Dict)
+#    print("Names_i:", Names_i)
+    BD_i = int(Data_Pi.get("birthday"))
+#    print(i, "BD_i:", BD_i, "S_N_i:", S_N_i)
+    Keys.append(BD_i)
+    Pair_i = {BD_i: S_N_i}
+    Dict[i] = Pair_i
+    Dicts.append(Dict[i])
+    print(Dict[i])
+print("Keys:", Keys)
+S_Keys = sorted(Keys)
+print("S_Keys:", S_Keys)
+Dicts = Dicts[1:]
+print("Dicts:", Dicts)
+Len_ND = len(Dicts)
+print("Len_ND:", Len_ND)
 # quit()
-Len_D = len(Dict)
-print("Len_D:", Len_D)
-# Sorted_Keys = sorted(Keys)
-for i in range(Len_SK):
-    Key_i = Sorted_Keys[i]
-    Name_i = Dict.get(Key_i)
-    print(Key_i, Name_i)
-# Печать только имен для предачи на сайт
-print("Names sorted by Year and then by Alphabet:")
-for i in range(Len_SK):
-    Key_i = Sorted_Keys[i]
-    Name_i = Dict.get(Key_i)
-    print(Name_i)
+BDs = []
+Set_BDs = set()
+for i in range (Len_ND):
+    Dict_i = Dicts[i]
+#    Key_i = Dict_i.get(key)
+    Key_i = Keys[i]
+    Val_i = Dict_i.get(Key_i)
+    print(i, Key_i, Val_i)
+# quit()
+Set_BDs = set(Keys)
+print(Set_BDs)
+List_BDs = sorted(list(Set_BDs))
+print("List_BDs:", List_BDs)
+Len_BDs = len(List_BDs)
+print("Len_BDs:", Len_BDs)
+for i in range(Len_ND):
+    Val_i = []
+    Key_i = Keys[i]
+    Dict_i = Dicts[i]
+    Vals_i = Dict_i.get(Key_i)
+    if Key_i in Keys:
+        Val_i.append(Vals_i)
+
