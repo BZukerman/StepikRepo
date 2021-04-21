@@ -17,7 +17,7 @@ module2 = ElementTree.SubElement(scores, "module2")
 module2.text = "80"
 #
 module3 = ElementTree.SubElement(scores, "module3")
-module2.text = "90"
+module3.text = "90"
 #
 tree = ElementTree.ElementTree(root)
 tree.write("student.xml")
